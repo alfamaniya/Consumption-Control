@@ -98,6 +98,7 @@ async function exerciseApplication(browser, port, route, label) {
   // Kardex must reflect both sides of the same item lifecycle.
   await page.locator('a[href="#section-5"]').click();
   await page.locator('#kardex-code-search').fill(code);
+  await page.locator('#kardex-code-suggestions .kardex-suggestion-option').first().click();
   await page.waitForFunction(() => {
     const body = document.getElementById('kardex-body');
     return body && body.querySelectorAll('tr').length >= 2;
