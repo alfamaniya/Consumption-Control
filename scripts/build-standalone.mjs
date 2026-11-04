@@ -12,7 +12,6 @@ const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const INPUT_HTML = resolve(ROOT, 'index.html');
 const INPUT_CSS = resolve(ROOT, 'index.css');
 const INPUT_DASHBOARD_CSS = resolve(ROOT, 'dashboard/dashboard.css');
-const INPUT_DASHBOARD_JS = resolve(ROOT, 'dashboard/dashboard.js');
 const INPUT_ENTRY_CSS = resolve(ROOT, 'entry/entry.css');
 const INPUT_ENTRY_JS = resolve(ROOT, 'entry/entry.js');
 const INPUT_INVENTORY_CSS = resolve(ROOT, 'inventory/inventory.css');
@@ -31,7 +30,7 @@ const INPUT_BACKUP_FOLDER_JS = resolve(ROOT, 'settings/backup-folder.js');
 const INPUT_BACKUP_RESTORE_JS = resolve(ROOT, 'settings/backup-restore.js');
 const INPUT_JS = resolve(ROOT, 'index.js');
 const INPUT_XLSX = resolve(ROOT, 'vendor/xlsx.full.min.js');
-const SECTION_FILES = [['section-dashboard','dashboard','dashboard.html'],['section-1','entry','entry.html'],['section-2','inventory','inventory.html'],['section-4','reports','reports.html'],['section-5','kardex','kardex.html'],['section-admin','admin','admin.html'],['section-3','settings','settings.html']];
+const SECTION_FILES = [['section-1','entry','entry.html'],['section-2','inventory','inventory.html'],['section-4','reports','reports.html'],['section-5','kardex','kardex.html'],['section-admin','admin','admin.html'],['section-3','settings','settings.html']];
 const OUTPUT_HTML = resolve(ROOT, 'anbar-standalone.html');
 
 function assert(condition, message) {
@@ -102,14 +101,12 @@ function createScriptLoader() {
     "  runEmbeddedScript('anbar-backup-restore-script');",
     "  runEmbeddedScript('anbar-app-script');",
     "  runEmbeddedScript('anbar-inventory-script');",
-    "  runEmbeddedScript('anbar-dashboard-script');",
     "  runEmbeddedScript('anbar-entry-script');",
     "  runEmbeddedScript('anbar-admin-script');",
     "  runEmbeddedScript('anbar-kardex-script');",
     "  runEmbeddedScript('anbar-reports-script');",
     "  runEmbeddedScript('anbar-settings-script');",
     "  if (typeof setupInventorySection === 'function') setupInventorySection();",
-    "  if (typeof setupDashboard === 'function') setupDashboard();",
     "  if (typeof setupEntrySection === 'function') setupEntrySection();",
     "  if (typeof setupAdminSection === 'function') setupAdminSection();",
     "  if (window.AnbarReports && typeof window.AnbarReports.initializeEntryHistory === 'function') window.AnbarReports.initializeEntryHistory();",
@@ -152,11 +149,10 @@ function assertPayloadMatches(html, id, expectedSource) {
 }
 
 async function main() {
-  const [htmlFile, cssFile, dashboardCssFile, dashboardJsFile, entryCssFile, entryJsFile, inventoryCssFile, inventoryJsFile, adminCssFile, adminJsFile, kardexCssFile, kardexJsFile, reportsCssFile, reportsJsFile, settingsCssFile, settingsJsFile, backupValidationJs, backupEngineJs, backupFolderJs, backupRestoreJs, jsFile, xlsxFile, ...sectionContents] = await Promise.all([
+  const [htmlFile, cssFile, dashboardCssFile, entryCssFile, entryJsFile, inventoryCssFile, inventoryJsFile, adminCssFile, adminJsFile, kardexCssFile, kardexJsFile, reportsCssFile, reportsJsFile, settingsCssFile, settingsJsFile, backupValidationJs, backupEngineJs, backupFolderJs, backupRestoreJs, jsFile, xlsxFile, ...sectionContents] = await Promise.all([
     readRequiredFile(INPUT_HTML, 'source HTML'),
     readRequiredFile(INPUT_CSS, 'stylesheet'),
     readRequiredFile(INPUT_DASHBOARD_CSS, 'dashboard stylesheet'),
-    readRequiredFile(INPUT_DASHBOARD_JS, 'dashboard JavaScript'),
     readRequiredFile(INPUT_ENTRY_CSS, 'entry stylesheet'),
     readRequiredFile(INPUT_ENTRY_JS, 'entry JavaScript'),
     readRequiredFile(INPUT_INVENTORY_CSS, 'inventory stylesheet'),
@@ -188,7 +184,6 @@ async function main() {
     html = html.replace(mount, sectionHtml);
   }
   const css = cssFile;
-  const dashboardJs = dashboardJsFile;
   const entryJs = entryJsFile;
   const inventoryJs = inventoryJsFile;
   const adminJs = adminJsFile;
@@ -255,7 +250,7 @@ async function main() {
   html = replaceExactlyOnce(
     html,
     /<script\b(?=[^>]*\bsrc=["']sections-loader\.js["'])[^>]*>\s*<\/script>\s*/i,
-    encodeScriptPayload(backupValidationJs, 'anbar-backup-validation-script') + encodeScriptPayload(backupEngineJs, 'anbar-backup-engine-script') + encodeScriptPayload(backupFolderJs, 'anbar-backup-folder-script') + encodeScriptPayload(backupRestoreJs, 'anbar-backup-restore-script') + encodeScriptPayload(appJs, 'anbar-app-script') + encodeScriptPayload(dashboardJs, 'anbar-dashboard-script') + encodeScriptPayload(inventoryJs, 'anbar-inventory-script') + encodeScriptPayload(entryJs, 'anbar-entry-script') + encodeScriptPayload(adminJs, 'anbar-admin-script') + encodeScriptPayload(kardexJs, 'anbar-kardex-script') + encodeScriptPayload(reportsJs, 'anbar-reports-script') + encodeScriptPayload(settingsJsFile, 'anbar-settings-script') + createScriptLoader(),
+    encodeScriptPayload(backupValidationJs, 'anbar-backup-validation-script') + encodeScriptPayload(backupEngineJs, 'anbar-backup-engine-script') + encodeScriptPayload(backupFolderJs, 'anbar-backup-folder-script') + encodeScriptPayload(backupRestoreJs, 'anbar-backup-restore-script') + encodeScriptPayload(appJs, 'anbar-app-script') + encodeScriptPayload(inventoryJs, 'anbar-inventory-script') + encodeScriptPayload(entryJs, 'anbar-entry-script') + encodeScriptPayload(adminJs, 'anbar-admin-script') + encodeScriptPayload(kardexJs, 'anbar-kardex-script') + encodeScriptPayload(reportsJs, 'anbar-reports-script') + encodeScriptPayload(settingsJsFile, 'anbar-settings-script') + createScriptLoader(),
     'sections-loader.js bootstrap script'
   );
 
