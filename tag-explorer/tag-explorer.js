@@ -77,8 +77,9 @@
     }
     if (selectedNodeId) {
       showDetails(findNode(selectedNodeId), detail);
-      tree.querySelectorAll('.tag-explorer-select').forEach(function (button) {
-        button.setAttribute('aria-current', button.closest('[role="treeitem"]') && button.closest('[role="treeitem"]').querySelector('.tag-explorer-node-label')?.textContent === (findNode(selectedNodeId)?.label || '') ? 'true' : 'false');
+      tree.querySelectorAll('[data-tag-node-id]').forEach(function (item) {
+        const button = item.querySelector(':scope > .tag-explorer-tree-row > .tag-explorer-select');
+        if (button) button.setAttribute('aria-current', item.dataset.tagNodeId === selectedNodeId ? 'true' : 'false');
       });
     }
     else detail.replaceChildren(makeText('p', 'در صفحه سکشن قابل شناسایی وجود ندارد.', 'tag-explorer-empty'));
@@ -168,6 +169,7 @@
     const item = document.createElement('li');
     item.className = 'tag-explorer-tree-item';
     item.setAttribute('role', 'treeitem');
+    item.dataset.tagNodeId = node.id;
     const row = makeText('div', '', 'tag-explorer-tree-row');
     const toggle = document.createElement('button');
     toggle.type = 'button';
