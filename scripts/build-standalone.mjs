@@ -110,6 +110,7 @@ function createScriptLoader() {
     "  runEmbeddedScript('anbar-kardex-script');",
     "  runEmbeddedScript('anbar-reports-script');",
     "  runEmbeddedScript('anbar-settings-script');",
+    "  runEmbeddedScript('anbar-tag-explorer-script');",
     "  if (typeof setupInventorySection === 'function') setupInventorySection();",
     "  if (typeof setupDashboard === 'function') setupDashboard();",
     "  if (typeof setupEntrySection === 'function') setupEntrySection();",

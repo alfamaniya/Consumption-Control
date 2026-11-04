@@ -8,7 +8,7 @@
   let selectedNodeId = null;
   let searchQuery = '';
 
-  const SECTION_SELECTOR = 'main .sections > .section-card, main .section-card';
+  const SECTION_SELECTOR = 'main .sections > .section-card';
   const SKIP_SELECTOR = '#section-tag-explorer, script, style, template, noscript, svg, path';
   const INTERACTIVE_TAGS = new Set(['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA', 'FORM', 'SUMMARY', 'DETAILS']);
   const MEANINGFUL_CLASS = /(card|panel|widget|stat|table|form|field|group|toolbar|actions|list|history|chart|summary|dialog|alert|filter|tabs|section|item|row|column|preview|calendar|quick|stock|report|entry|inventory|kardex|setting)/i;
