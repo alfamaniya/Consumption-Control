@@ -1,0 +1,41 @@
+.tag-explorer-section{display:flex;flex-direction:column;gap:18px}
+.tag-explorer-header{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.tag-explorer-header h2{margin:5px 0 7px;color:var(--text-primary,#172b4d)}
+.tag-explorer-header p{margin:0;color:var(--text-muted,#64748b);line-height:1.8}
+.tag-explorer-eyebrow{font-size:.78rem;font-weight:800;color:var(--primary,#2563eb)}
+.tag-explorer-tools{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
+.tag-explorer-search input{min-width:min(290px,75vw);padding:11px 13px;border:1px solid var(--border,#dbe3ef);border-radius:11px;background:var(--surface,#fff);color:inherit;font:inherit}
+.tag-explorer-summary{padding:10px 14px;border:1px solid #cfe0ff;border-radius:11px;background:#eff6ff;color:#1e40af;font-size:.9rem;font-weight:700}
+.tag-explorer-layout{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,.9fr);gap:16px;align-items:stretch}
+.tag-explorer-tree-panel,.tag-explorer-detail-panel{min-width:0;border:1px solid var(--border,#dbe3ef);border-radius:14px;background:var(--surface,#fff);overflow:hidden}
+.tag-explorer-panel-heading{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border,#e2e8f0);background:var(--surface-soft,#f8fafc)}
+.tag-explorer-panel-heading h3{margin:0;font-size:1rem;color:var(--text-primary,#172b4d)}
+.tag-explorer-panel-heading span{font-size:.75rem;color:var(--text-muted,#64748b)}
+.tag-explorer-tree{max-height:650px;overflow:auto;padding:12px}
+.tag-explorer-tree-list{list-style:none;margin:0;padding:0}
+.tag-explorer-tree-list .tag-explorer-tree-list{margin:4px 0 5px 18px;padding-left:12px;border-left:1px solid #d7e2f1}
+.tag-explorer-tree-item{margin:3px 0}
+.tag-explorer-tree-row{display:flex;align-items:center;gap:5px;min-width:0}
+.tag-explorer-toggle,.tag-explorer-select{border:0;background:transparent;color:inherit;font:inherit;cursor:pointer}
+.tag-explorer-toggle{width:25px;height:30px;flex:0 0 25px;border-radius:6px;color:#64748b}
+.tag-explorer-toggle:disabled{visibility:hidden}
+.tag-explorer-select{display:flex;align-items:center;gap:8px;text-align:right;min-width:0;width:100%;padding:7px 9px;border-radius:8px}
+.tag-explorer-select:hover,.tag-explorer-select[aria-current="true"]{background:#eaf2ff;color:#174ea6}
+.tag-explorer-node-icon{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;flex:0 0 25px;border-radius:7px;background:#eef2ff;color:#3157a5;font-size:.7rem;font-weight:800;direction:ltr}
+.tag-explorer-node-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:.88rem}
+.tag-explorer-node-meta{margin-right:auto;flex:0 0 auto;color:#8492a6;font-size:.7rem;direction:ltr}
+.tag-explorer-detail{padding:16px;min-height:280px}
+.tag-explorer-detail-title{margin:0 0 13px;font-size:1.05rem;color:var(--text-primary,#172b4d);overflow-wrap:anywhere}
+.tag-explorer-properties{display:grid;grid-template-columns: minmax(95px,.35fr) minmax(0,1fr);gap:0;border:1px solid var(--border,#e2e8f0);border-radius:10px;overflow:hidden}
+.tag-explorer-property{display:contents}
+.tag-explorer-property dt,.tag-explorer-property dd{margin:0;padding:10px;border-bottom:1px solid var(--border,#e2e8f0);font-size:.82rem;overflow-wrap:anywhere}
+.tag-explorer-property dt{background:#f8fafc;color:#64748b;font-weight:700}
+.tag-explorer-property dd{color:var(--text-primary,#172b4d);direction:ltr;text-align:left;font-family:ui-monospace,SFMono-Regular,Consolas,monospace}
+.tag-explorer-property:last-child dt,.tag-explorer-property:last-child dd{border-bottom:0}
+.tag-explorer-badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:13px}
+.tag-explorer-badge{padding:5px 9px;border-radius:20px;background:#eef2ff;color:#344b8e;font-size:.74rem}
+.tag-explorer-empty{margin:0;padding:20px;text-align:center;color:var(--text-muted,#64748b);line-height:1.9}
+.tag-explorer-footnote{margin:0;color:var(--text-muted,#64748b);font-size:.78rem;line-height:1.8}
+.tag-explorer-tree [hidden]{display:none!important}
+@media(max-width:850px){.tag-explorer-layout{grid-template-columns:1fr}.tag-explorer-tree{max-height:480px}.tag-explorer-header{display:block}.tag-explorer-tools{margin-top:14px}.tag-explorer-search{flex:1}.tag-explorer-search input{width:100%;min-width:0}}
+@media(max-width:480px){.tag-explorer-panel-heading{align-items:flex-start;flex-direction:column}.tag-explorer-property{display:grid;grid-template-columns:100px minmax(0,1fr)}.tag-explorer-property dt,.tag-explorer-property dd{min-width:0}}

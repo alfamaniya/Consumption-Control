@@ -35,4 +35,4 @@ jobs:
       - name: بررسی HTML، JavaScript و CSS
         run: |
           node scripts/check-code-structure.mjs
-          npx html-validate index.html admin/*.html dashboard/*.html entry/*.html inventory/*.html kardex/*.html reports/*.html settings/*.html
+          npx html-validate index.html admin/*.html dashboard/*.html entry/*.html inventory/*.html kardex/*.html reports/*.html settings/*.html tag-explorer/*.html
