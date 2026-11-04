@@ -1,4 +1,4 @@
-/* منطق داشبورد؛ باید پیش از index.js بارگذاری شود. */
+/* منطق داشبورد؛ پس از بارگذاری index.js و آماده‌شدن API هسته اجرا می‌شود. */
 function renderDataQualityReport() {
       const anchor = document.querySelector('.dashboard-note');
       if (!anchor) return;
