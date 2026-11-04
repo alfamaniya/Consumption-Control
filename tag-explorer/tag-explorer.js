@@ -75,7 +75,12 @@
     if (!selectedNodeId || !findNode(selectedNodeId)) {
       selectedNodeId = currentNodes[0] ? currentNodes[0].id : null;
     }
-    if (selectedNodeId) showDetails(findNode(selectedNodeId), detail);
+    if (selectedNodeId) {
+      showDetails(findNode(selectedNodeId), detail);
+      tree.querySelectorAll('.tag-explorer-select').forEach(function (button) {
+        button.setAttribute('aria-current', button.closest('[role="treeitem"]') && button.closest('[role="treeitem"]').querySelector('.tag-explorer-node-label')?.textContent === (findNode(selectedNodeId)?.label || '') ? 'true' : 'false');
+      });
+    }
     else detail.replaceChildren(makeText('p', 'در صفحه سکشن قابل شناسایی وجود ندارد.', 'tag-explorer-empty'));
   }
 
@@ -199,7 +204,7 @@
       nested.className = 'tag-explorer-tree-list';
       nested.setAttribute('role', 'group');
       childItems.forEach(function (child) { nested.appendChild(child); });
-      nested.hidden = Boolean(searchQuery);
+      nested.hidden = false;
       if (searchQuery) {
         toggle.textContent = '▾';
         toggle.setAttribute('aria-expanded', 'true');
@@ -227,6 +232,8 @@
     if (!node || !node.element) return;
     const element = node.element;
     container.replaceChildren();
+    const kindLabel = container.parentElement && container.parentElement.querySelector('#tag-explorer-detail-kind');
+    if (kindLabel) kindLabel.textContent = node.kind;
     container.appendChild(makeText('h4', node.label, 'tag-explorer-detail-title'));
     const properties = document.createElement('dl');
     properties.className = 'tag-explorer-properties';
