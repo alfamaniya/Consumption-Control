@@ -8,11 +8,12 @@
     'section-4': 'reports/reports.html',
     'section-5': 'kardex/kardex.html',
     'section-admin': 'admin/admin.html',
-    'section-3': 'settings/settings.html'
+    'section-3': 'settings/settings.html',
+    'section-tag-explorer': 'tag-explorer/tag-explorer.html'
   };
   const resourceRegistry = window.__anbarResourceRegistry || (window.__anbarResourceRegistry = new Map());
-  const styles = ['dashboard/dashboard.css', 'entry/entry.css', 'inventory/inventory.css', 'admin/admin.css', 'kardex/kardex.css', 'reports/reports.css', 'settings/settings.css'];
-  const scripts = ['settings/backup-validation.js', 'settings/backup-engine.js', 'settings/backup-folder.js', 'settings/backup-restore.js', 'index.js', 'inventory/inventory.js', 'dashboard/dashboard.js', 'entry/entry.js', 'admin/admin.js', 'kardex/kardex.js', 'reports/reports.js', 'settings/settings.js'];
+  const styles = ['dashboard/dashboard.css', 'entry/entry.css', 'inventory/inventory.css', 'admin/admin.css', 'kardex/kardex.css', 'reports/reports.css', 'settings/settings.css', 'tag-explorer/tag-explorer.css'];
+  const scripts = ['settings/backup-validation.js', 'settings/backup-engine.js', 'settings/backup-folder.js', 'settings/backup-restore.js', 'index.js', 'inventory/inventory.js', 'dashboard/dashboard.js', 'entry/entry.js', 'admin/admin.js', 'kardex/kardex.js', 'reports/reports.js', 'settings/settings.js', 'tag-explorer/tag-explorer.js'];
   try {
     const mounts = Array.from(document.querySelectorAll('[data-section-mount]'));
     const expectedIds = Object.keys(sectionFiles);
@@ -44,6 +45,7 @@
     window.AnbarReports?.initializeShipmentHistory();
     if (typeof setupKardexSection === 'function') setupKardexSection();
     if (typeof window.initializeSettingsSection === 'function') window.initializeSettingsSection();
+    if (typeof window.setupTagExplorer === 'function') window.setupTagExplorer();
   } catch (error) {
     console.error('Section loader:', error);
     showError('بارگذاری بخش‌ها کامل نشد: ' + error.message + '؛ نسخه چندفایلی را از طریق وب‌سرور محلی یا HTTPS اجرا کنید.');

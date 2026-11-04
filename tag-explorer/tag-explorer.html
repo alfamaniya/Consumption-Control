@@ -1,0 +1,38 @@
+<section class="section-card tag-explorer-section" id="section-tag-explorer" aria-labelledby="tag-explorer-title">
+  <div class="tag-explorer-header">
+    <div>
+      <span class="tag-explorer-eyebrow">شناخت زنده رابط کاربری</span>
+      <h2 id="tag-explorer-title">اکسپلورر تگ‌ها و قابلیت‌ها</h2>
+      <p>ساختار واقعی سکشن‌ها و اجزای قابل مشاهده در DOM را به‌صورت درختی مرور کنید.</p>
+    </div>
+    <div class="tag-explorer-tools">
+      <label class="tag-explorer-search">
+        <span class="sr-only">جست‌وجو در تگ‌ها</span>
+        <input id="tag-explorer-search" type="search" placeholder="جست‌وجو در نام، شناسه یا کلاس…" autocomplete="off">
+      </label>
+      <button class="action-button secondary" id="tag-explorer-refresh" type="button">بازخوانی ساختار</button>
+    </div>
+  </div>
+  <div class="tag-explorer-summary" id="tag-explorer-summary" role="status" aria-live="polite">در حال شناسایی ساختار صفحه…</div>
+  <div class="tag-explorer-layout">
+    <section class="tag-explorer-tree-panel" aria-labelledby="tag-explorer-tree-title">
+      <div class="tag-explorer-panel-heading">
+        <h3 id="tag-explorer-tree-title">درخت ساختار سایت</h3>
+        <span>برای مشاهده جزئیات، یک مورد را انتخاب کنید</span>
+      </div>
+      <div class="tag-explorer-tree" id="tag-explorer-tree" role="tree" aria-label="درخت سکشن‌ها و قابلیت‌های سایت">
+        <p class="tag-explorer-empty">در حال ساخت درخت…</p>
+      </div>
+    </section>
+    <aside class="tag-explorer-detail-panel" aria-labelledby="tag-explorer-detail-title">
+      <div class="tag-explorer-panel-heading">
+        <h3 id="tag-explorer-detail-title">جزئیات انتخاب</h3>
+        <span id="tag-explorer-detail-kind">هنوز موردی انتخاب نشده</span>
+      </div>
+      <div class="tag-explorer-detail" id="tag-explorer-detail" aria-live="polite">
+        <p class="tag-explorer-empty">یک سکشن یا جزء را از درخت انتخاب کنید تا تگ HTML، شناسه، کلاس‌ها و ویژگی‌های آن نمایش داده شود.</p>
+      </div>
+    </aside>
+  </div>
+  <p class="tag-explorer-footnote">این ابزار ساختار DOM صفحه را می‌خواند؛ رویدادهای ثبت‌شده به‌صورت مستقیم در مرورگر قابل کشف عمومی نیستند، بنابراین نوع تعامل از تگ و ویژگی‌های استاندارد عنصر تشخیص داده می‌شود.</p>
+</section>

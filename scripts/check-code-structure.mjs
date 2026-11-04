@@ -15,7 +15,7 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const postcss = require("postcss");
 const root = process.cwd();
-const sourceDirs = ["admin", "dashboard", "entry", "inventory", "kardex", "reports", "settings"];
+const sourceDirs = ["admin", "dashboard", "entry", "inventory", "kardex", "reports", "settings", "tag-explorer"];
 const sourceFiles = ["index.js", "sections-loader.js"];
 const failures = [];
 
