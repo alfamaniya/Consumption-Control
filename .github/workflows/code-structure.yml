@@ -21,7 +21,7 @@ jobs:
       - name: آماده‌سازی Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - name: نصب ابزارهای اعتبارسنجی
         run: npm install --no-save --no-package-lock html-validate postcss
