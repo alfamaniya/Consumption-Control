@@ -6,6 +6,8 @@
   let refreshTimer = null;
   let currentNodes = [];
   let selectedNodeId = null;
+  let selectedElement = null;
+  let nodeSequence = 0;
   let searchQuery = '';
 
   const SECTION_SELECTOR = 'main .sections > .section-card';
@@ -59,22 +61,27 @@
   function scanAndRender(tree, detail, summary) {
     const sections = Array.from(document.querySelectorAll(SECTION_SELECTOR))
       .filter(function (section) { return !section.matches(SKIP_SELECTOR); });
-    currentNodes = sections.map(function (section, index) {
+    nodeSequence = 0;
+    currentNodes = sections.map(function (section) {
       const title = getSectionTitle(section);
       return {
-        id: 'section-' + index,
+        id: createNodeId(),
         label: title,
         kind: 'سکشن',
         element: section,
         children: collectMeaningfulChildren(section, 'section-' + index)
       };
     });
-    renderTree(tree, detail);
     const componentCount = countNodes(currentNodes) - currentNodes.length;
     summary.textContent = sections.length + ' سکشن شناسایی شد · ' + componentCount + ' جزء و قابلیت قابل بررسی · بروزرسانی زنده فعال است';
-    if (!selectedNodeId || !findNode(selectedNodeId)) {
+    const selectedNode = selectedElement ? findNodeByElement(selectedElement) : null;
+    if (selectedNode) {
+      selectedNodeId = selectedNode.id;
+    } else {
+      selectedElement = currentNodes[0] ? currentNodes[0].element : null;
       selectedNodeId = currentNodes[0] ? currentNodes[0].id : null;
     }
+    renderTree(tree, detail);
     if (selectedNodeId) {
       showDetails(findNode(selectedNodeId), detail);
       tree.querySelectorAll('[data-tag-node-id]').forEach(function (item) {
@@ -91,7 +98,8 @@
     Array.from(parent.children).forEach(function (element) {
       if (element.matches(SKIP_SELECTOR) || element.closest('#section-tag-explorer')) return;
       if (isMeaningful(element)) {
-        const id = parentId + '-' + sequence++;
+        const id = createNodeId();
+        sequence += 1;
         result.push({
           id: id,
           label: getElementLabel(element),
@@ -188,6 +196,7 @@
     select.append(icon, label, meta);
     select.addEventListener('click', function () {
       selectedNodeId = node.id;
+      selectedElement = node.element;
       tree.querySelectorAll('.tag-explorer-select').forEach(function (button) { button.setAttribute('aria-current', 'false'); });
       select.setAttribute('aria-current', 'true');
       showDetails(node, detail);
@@ -275,11 +284,26 @@
     return 'عنصر ساختاری / نمایشی';
   }
 
+  function createNodeId() {
+    nodeSequence += 1;
+    return 'tag-node-' + nodeSequence;
+  }
+
   function findNode(id, nodes) {
     const source = nodes || currentNodes;
     for (const node of source) {
       if (node.id === id) return node;
       const found = findNode(id, node.children);
+      if (found) return found;
+    }
+    return null;
+  }
+
+  function findNodeByElement(element, nodes) {
+    const source = nodes || currentNodes;
+    for (const node of source) {
+      if (node.element === element) return node;
+      const found = findNodeByElement(element, node.children);
       if (found) return found;
     }
     return null;
