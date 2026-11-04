@@ -2,7 +2,6 @@
 (async function () {
   'use strict';
   const sectionFiles = {
-    'section-dashboard': 'dashboard/dashboard.html',
     'section-1': 'entry/entry.html',
     'section-2': 'inventory/inventory.html',
     'section-4': 'reports/reports.html',
@@ -12,7 +11,7 @@
   };
   const resourceRegistry = window.__anbarResourceRegistry || (window.__anbarResourceRegistry = new Map());
   const styles = ['dashboard/dashboard.css', 'entry/entry.css', 'inventory/inventory.css', 'admin/admin.css', 'kardex/kardex.css', 'reports/reports.css', 'settings/settings.css'];
-  const scripts = ['settings/backup-validation.js', 'settings/backup-engine.js', 'settings/backup-folder.js', 'settings/backup-restore.js', 'index.js', 'inventory/inventory.js', 'dashboard/dashboard.js', 'entry/entry.js', 'admin/admin.js', 'kardex/kardex.js', 'reports/reports.js', 'settings/settings.js'];
+  const scripts = ['settings/backup-validation.js', 'settings/backup-engine.js', 'settings/backup-folder.js', 'settings/backup-restore.js', 'index.js', 'inventory/inventory.js', 'entry/entry.js', 'admin/admin.js', 'kardex/kardex.js', 'reports/reports.js', 'settings/settings.js'];
   try {
     const mounts = Array.from(document.querySelectorAll('[data-section-mount]'));
     const expectedIds = Object.keys(sectionFiles);
@@ -37,7 +36,6 @@
     for (const path of styles) await loadStylesheetOnce(path);
     for (const path of scripts) await loadScriptOnce(path);
     if (typeof setupInventorySection === 'function') setupInventorySection();
-    if (typeof setupDashboard === 'function') setupDashboard();
     if (typeof setupEntrySection === 'function') setupEntrySection();
     if (typeof setupAdminSection === 'function') setupAdminSection();
     window.AnbarReports?.initializeEntryHistory();
