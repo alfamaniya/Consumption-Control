@@ -36,7 +36,4 @@ jobs:
         run: |
           node scripts/check-code-structure.mjs
           html_files=(index.html admin/*.html dashboard/*.html entry/*.html inventory/*.html kardex/*.html reports/*.html settings/*.html)
-          if [[ -d tag-explorer ]]; then
-            html_files+=(tag-explorer/*.html)
-          fi
           npx html-validate "${html_files[@]}"
