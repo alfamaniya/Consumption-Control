@@ -21,7 +21,7 @@ jobs:
       - name: آماده‌سازی Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
 
       - name: نصب ابزارهای اعتبارسنجی
         run: npm install --no-save --no-package-lock html-validate postcss
@@ -35,4 +35,8 @@ jobs:
       - name: بررسی HTML، JavaScript و CSS
         run: |
           node scripts/check-code-structure.mjs
-          npx html-validate index.html admin/*.html dashboard/*.html entry/*.html inventory/*.html kardex/*.html reports/*.html settings/*.html
+          html_files=(index.html admin/*.html dashboard/*.html entry/*.html inventory/*.html kardex/*.html reports/*.html settings/*.html)
+          if [[ -d tag-explorer ]]; then
+            html_files+=(tag-explorer/*.html)
+          fi
+          npx html-validate "${html_files[@]}"
