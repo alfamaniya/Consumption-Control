@@ -2,10 +2,8 @@
 
 ## درخت فایل‌های فعلی مخزن
 
-> فایل `anbar-standalone.html` خروجی تولیدی اسکریپت `scripts/build-standalone.mjs` است و در انتقال اولیه به‌دلیل محدودیت دریافت فایل حجیم، در مخزن مقصد کپی نشده است.
-
 ```text
-Consumption-Control/
+anbar/
 ├── .github/
 │   └── workflows/
 │       ├── code-structure.yml          # کنترل ساختار کد و ساخت نسخه مستقل
@@ -51,6 +49,7 @@ Consumption-Control/
 ├── index.css                         # تمام استایل‌های برنامه
 ├── index.js                          # هسته مشترک، داده‌ها و عملیات
 ├── sections-loader.js                # بارگذاری و اعتبارسنجی سکشن‌ها
+├── anbar-standalone.html             # خروجی تولیدشده؛ ویرایش دستی ممنوع
 └── README.md                         # مستندات و وضعیت بررسی
 ```
 
