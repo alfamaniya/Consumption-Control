@@ -5,7 +5,7 @@
 > فایل `anbar-standalone.html` خروجی تولیدی اسکریپت `scripts/build-standalone.mjs` است و در انتقال اولیه به‌دلیل محدودیت دریافت فایل حجیم، در مخزن مقصد کپی نشده است.
 
 ```text
-anbar/
+Consumption-Control/
 ├── .github/
 │   └── workflows/
 │       ├── code-structure.yml          # کنترل ساختار کد و ساخت نسخه مستقل
