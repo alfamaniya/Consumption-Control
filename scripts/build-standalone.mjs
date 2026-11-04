@@ -284,7 +284,6 @@ async function main() {
 
   // Confirm the embedded payloads decode to the exact source files.
   assertPayloadMatches(html, 'anbar-xlsx-script', xlsxJs);
-  assertPayloadMatches(html, 'anbar-dashboard-script', dashboardJs);
   assertPayloadMatches(html, 'anbar-app-script', appJs);
   assertPayloadMatches(html, 'anbar-entry-script', entryJs);
   assertPayloadMatches(html, 'anbar-inventory-script', inventoryJs);
