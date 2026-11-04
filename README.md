@@ -3,54 +3,56 @@
 ## درخت فایل‌های فعلی مخزن
 
 ```text
-anbar/
+Consumption-Control/
 ├── .github/
 │   └── workflows/
-│       ├── code-structure.yml          # کنترل ساختار کد و ساخت نسخه مستقل
-│       └── deploy-pages.yml             # اعتبارسنجی و انتشار خودکار GitHub Pages
+│       ├── code-structure.yml          # کنترل ساختار کد
+│       └── deploy-pages.yml            # اعتبارسنجی و انتشار GitHub Pages
 ├── admin/
-│   ├── admin.html                    # ورود مدیریت، کالاها، محل‌ها و گروه‌ها
-│   ├── admin.css                     # استایل اختصاصی سکشن مدیریت
-│   └── admin.js                      # ورود مدیر، حذف گروهی و مدیریت محل/گروه
+│   ├── admin.html
+│   ├── admin.css
+│   └── admin.js
 ├── dashboard/
-│   ├── dashboard.html                 # محتوای مستقل سکشن داشبورد
-│   ├── dashboard.css                 # استایل‌های اختصاصی داشبورد
-│   └── dashboard.js                  # منطق و رویدادهای داشبورد
+│   ├── dashboard.html
+│   ├── dashboard.css
+│   └── dashboard.js
 ├── entry/
-│   ├── entry.html                    # فرم ورود کالا و پیش‌نمایش داده‌ها
-│   ├── entry.css                     # استایل اختصاصی ورود کالا
-│   └── entry.js                      # اعتبارسنجی، ورود و تاریخچه ورود
+│   ├── entry.html
+│   ├── entry.css
+│   └── entry.js
 ├── inventory/
-│   ├── inventory.html                # جدول موجودی، جست‌وجو و پایش هشدارها
-│   ├── inventory.css                 # استایل اختصاصی سکشن موجودی
-│   └── inventory.js                  # جدول، جست‌وجو، مرتب‌سازی و هشدار موجودی
+│   ├── inventory.html
+│   ├── inventory.css
+│   └── inventory.js
 ├── kardex/
-│   ├── kardex.html                   # دفتر گردش کالای انتخاب‌شده
-│   ├── kardex.js                     # منطق ممیزی و نمایش گردش کالا
-│   └── kardex.css                    # استایل اختصاصی سکشن کاردکس
+│   ├── kardex.html
+│   ├── kardex.css
+│   └── kardex.js
 ├── reports/
-│   ├── reports.html                  # گزارش‌ها و تاریخچه ورود/ارسال
-│   ├── reports.css                   # استایل اختصاصی گزارش‌ها
-│   └── reports.js                    # شاخص‌ها، گزارش تفصیلی و تاریخچه ورود/ارسال
-├── settings/
-│   ├── backup-validation.js             # اعتبارسنجی ساختار و داده‌های JSON
-│   ├── backup-engine.js                  # تولید، ادغام تاریخچه و زمان‌بندی بکاپ
-│   ├── backup-folder.js                  # انتخاب پوشه و مدیریت مجوزها
-│   ├── backup-restore.js                 # پیش‌نمایش، تحلیل و بازیابی JSON
-│   ├── settings.html                 # پشتیبان‌گیری و بازیابی
-│   ├── settings.css                  # استایل اختصاصی بکاپ و بازیابی
-│   └── settings.js                   # کنترل رابط تنظیمات از طریق API هسته
+│   ├── reports.html
+│   ├── reports.css
+│   └── reports.js
 ├── scripts/
-│   └── build-standalone.mjs          # ادغام منابع در HTML مستقل
+│   ├── build-standalone.mjs
+│   └── check-code-structure.mjs
+├── settings/
+│   ├── backup-engine.js
+│   ├── backup-folder.js
+│   ├── backup-restore.js
+│   ├── backup-validation.js
+│   ├── settings.html
+│   ├── settings.css
+│   └── settings.js
 ├── vendor/
-│   ├── SHEETJS-LICENSE.txt           # مجوز کتابخانه SheetJS
-│   └── xlsx.full.min.js              # کتابخانه محلی ورود/خروجی Excel
-├── index.html                        # پوسته HTML، هدر/ناوبری، mount سکشن‌ها و dialogها
-├── index.css                         # تمام استایل‌های برنامه
-├── index.js                          # هسته مشترک، داده‌ها و عملیات
-├── sections-loader.js                # بارگذاری و اعتبارسنجی سکشن‌ها
-├── anbar-standalone.html             # خروجی تولیدشده؛ ویرایش دستی ممنوع
-└── README.md                         # مستندات و وضعیت بررسی
+│   ├── SHEETJS-LICENSE.txt
+│   └── xlsx.full.min.js
+├── .htmlvalidate.json
+├── index.html
+├── index.css
+├── index.js
+├── sections-loader.js
+├── anbar-standalone.html
+└── README.md
 ```
 
 > درخت بالا بر اساس فایل‌های موجود در شاخه `main` تهیه شده است. پوشه‌ها و فایل‌های حذف‌شده یا مسیرهای برنامه‌ریزی‌شده در آن نمایش داده نشده‌اند.
