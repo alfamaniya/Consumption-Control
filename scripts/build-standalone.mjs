@@ -25,15 +25,13 @@ const INPUT_REPORTS_CSS = resolve(ROOT, 'reports/reports.css');
 const INPUT_REPORTS_JS = resolve(ROOT, 'reports/reports.js');
 const INPUT_SETTINGS_CSS = resolve(ROOT, 'settings/settings.css');
 const INPUT_SETTINGS_JS = resolve(ROOT, 'settings/settings.js');
-const INPUT_TAG_EXPLORER_CSS = resolve(ROOT, 'tag-explorer/tag-explorer.css');
-const INPUT_TAG_EXPLORER_JS = resolve(ROOT, 'tag-explorer/tag-explorer.js');
 const INPUT_BACKUP_VALIDATION_JS = resolve(ROOT, 'settings/backup-validation.js');
 const INPUT_BACKUP_ENGINE_JS = resolve(ROOT, 'settings/backup-engine.js');
 const INPUT_BACKUP_FOLDER_JS = resolve(ROOT, 'settings/backup-folder.js');
 const INPUT_BACKUP_RESTORE_JS = resolve(ROOT, 'settings/backup-restore.js');
 const INPUT_JS = resolve(ROOT, 'index.js');
 const INPUT_XLSX = resolve(ROOT, 'vendor/xlsx.full.min.js');
-const SECTION_FILES = [['section-dashboard','dashboard','dashboard.html'],['section-1','entry','entry.html'],['section-2','inventory','inventory.html'],['section-4','reports','reports.html'],['section-5','kardex','kardex.html'],['section-admin','admin','admin.html'],['section-3','settings','settings.html'],['section-tag-explorer','tag-explorer','tag-explorer.html']];
+const SECTION_FILES = [['section-dashboard','dashboard','dashboard.html'],['section-1','entry','entry.html'],['section-2','inventory','inventory.html'],['section-4','reports','reports.html'],['section-5','kardex','kardex.html'],['section-admin','admin','admin.html'],['section-3','settings','settings.html']];
 const OUTPUT_HTML = resolve(ROOT, 'anbar-standalone.html');
 
 function assert(condition, message) {
@@ -110,7 +108,6 @@ function createScriptLoader() {
     "  runEmbeddedScript('anbar-kardex-script');",
     "  runEmbeddedScript('anbar-reports-script');",
     "  runEmbeddedScript('anbar-settings-script');",
-    "  runEmbeddedScript('anbar-tag-explorer-script');",
     "  if (typeof setupInventorySection === 'function') setupInventorySection();",
     "  if (typeof setupDashboard === 'function') setupDashboard();",
     "  if (typeof setupEntrySection === 'function') setupEntrySection();",
@@ -119,7 +116,6 @@ function createScriptLoader() {
     "  if (window.AnbarReports && typeof window.AnbarReports.initializeShipmentHistory === 'function') window.AnbarReports.initializeShipmentHistory();",
     "  if (typeof setupKardexSection === 'function') setupKardexSection();",
     "  if (typeof window.initializeSettingsSection === 'function') window.initializeSettingsSection();",
-    "  if (typeof window.setupTagExplorer === 'function') window.setupTagExplorer();",
     '})();',
     '</script>',
     ''
@@ -156,7 +152,7 @@ function assertPayloadMatches(html, id, expectedSource) {
 }
 
 async function main() {
-  const [htmlFile, cssFile, dashboardCssFile, dashboardJsFile, entryCssFile, entryJsFile, inventoryCssFile, inventoryJsFile, adminCssFile, adminJsFile, kardexCssFile, kardexJsFile, reportsCssFile, reportsJsFile, settingsCssFile, settingsJsFile, tagExplorerCssFile, tagExplorerJsFile, backupValidationJs, backupEngineJs, backupFolderJs, backupRestoreJs, jsFile, xlsxFile, ...sectionContents] = await Promise.all([
+  const [htmlFile, cssFile, dashboardCssFile, dashboardJsFile, entryCssFile, entryJsFile, inventoryCssFile, inventoryJsFile, adminCssFile, adminJsFile, kardexCssFile, kardexJsFile, reportsCssFile, reportsJsFile, settingsCssFile, settingsJsFile, backupValidationJs, backupEngineJs, backupFolderJs, backupRestoreJs, jsFile, xlsxFile, ...sectionContents] = await Promise.all([
     readRequiredFile(INPUT_HTML, 'source HTML'),
     readRequiredFile(INPUT_CSS, 'stylesheet'),
     readRequiredFile(INPUT_DASHBOARD_CSS, 'dashboard stylesheet'),
@@ -173,8 +169,6 @@ async function main() {
     readRequiredFile(INPUT_REPORTS_JS, 'reports JavaScript'),
     readRequiredFile(INPUT_SETTINGS_CSS, 'settings stylesheet'),
     readRequiredFile(INPUT_SETTINGS_JS, 'settings JavaScript'),
-    readRequiredFile(INPUT_TAG_EXPLORER_CSS, 'tag explorer stylesheet'),
-    readRequiredFile(INPUT_TAG_EXPLORER_JS, 'tag explorer JavaScript'),
     readRequiredFile(INPUT_BACKUP_VALIDATION_JS, 'backup validation JavaScript'),
     readRequiredFile(INPUT_BACKUP_ENGINE_JS, 'backup engine JavaScript'),
     readRequiredFile(INPUT_BACKUP_FOLDER_JS, 'backup folder JavaScript'),
@@ -247,7 +241,7 @@ async function main() {
   html = replaceExactlyOnce(
     html,
     /<\/head>/i,
-    '<style>\n' + kardexCssFile.replace(/<\/style/gi, '<\\/style') + '\n</style>\n<style>\n' + reportsCssFile.replace(/<\/style/gi, '<\\/style') + '\n</style>\n<style>\n' + settingsCssFile.replace(/<\/style/gi, '<\\/style') + '\n</style>\n<style>\n' + tagExplorerCssFile.replace(/<\/style/gi, '<\\/style') + '\n</style>\n</head>',
+    '<style>\n' + kardexCssFile.replace(/<\/style/gi, '<\\/style') + '\n</style>\n<style>\n' + reportsCssFile.replace(/<\/style/gi, '<\\/style') + '\n</style>\n<style>\n' + settingsCssFile.replace(/<\/style/gi, '<\\/style') + '\n</style>\n</head>',
     'document head closing tag for kardex, reports and settings stylesheets'
   );
 
@@ -261,7 +255,7 @@ async function main() {
   html = replaceExactlyOnce(
     html,
     /<script\b(?=[^>]*\bsrc=["']sections-loader\.js["'])[^>]*>\s*<\/script>\s*/i,
-    encodeScriptPayload(backupValidationJs, 'anbar-backup-validation-script') + encodeScriptPayload(backupEngineJs, 'anbar-backup-engine-script') + encodeScriptPayload(backupFolderJs, 'anbar-backup-folder-script') + encodeScriptPayload(backupRestoreJs, 'anbar-backup-restore-script') + encodeScriptPayload(appJs, 'anbar-app-script') + encodeScriptPayload(dashboardJs, 'anbar-dashboard-script') + encodeScriptPayload(inventoryJs, 'anbar-inventory-script') + encodeScriptPayload(entryJs, 'anbar-entry-script') + encodeScriptPayload(adminJs, 'anbar-admin-script') + encodeScriptPayload(kardexJs, 'anbar-kardex-script') + encodeScriptPayload(reportsJs, 'anbar-reports-script') + encodeScriptPayload(settingsJsFile, 'anbar-settings-script') + encodeScriptPayload(tagExplorerJsFile, 'anbar-tag-explorer-script') + createScriptLoader(),
+    encodeScriptPayload(backupValidationJs, 'anbar-backup-validation-script') + encodeScriptPayload(backupEngineJs, 'anbar-backup-engine-script') + encodeScriptPayload(backupFolderJs, 'anbar-backup-folder-script') + encodeScriptPayload(backupRestoreJs, 'anbar-backup-restore-script') + encodeScriptPayload(appJs, 'anbar-app-script') + encodeScriptPayload(dashboardJs, 'anbar-dashboard-script') + encodeScriptPayload(inventoryJs, 'anbar-inventory-script') + encodeScriptPayload(entryJs, 'anbar-entry-script') + encodeScriptPayload(adminJs, 'anbar-admin-script') + encodeScriptPayload(kardexJs, 'anbar-kardex-script') + encodeScriptPayload(reportsJs, 'anbar-reports-script') + encodeScriptPayload(settingsJsFile, 'anbar-settings-script') + createScriptLoader(),
     'sections-loader.js bootstrap script'
   );
 
@@ -270,7 +264,7 @@ async function main() {
   const banner = [
     '<!--',
     '  نسخه مستقل تولیدشده به‌صورت خودکار؛ این فایل را دستی ویرایش نکنید.',
-    '  منبع اصلی: index.html + index.css + sections-loader.js + همه فایل‌های HTML/CSS/JS سکشن‌ها + settings/backup-validation.js + settings/backup-engine.js + settings/backup-folder.js + settings/backup-restore.js + settings/settings.js + tag-explorer/tag-explorer.html/css/js + index.js + vendor/xlsx.full.min.js',
+    '  منبع اصلی: index.html + index.css + sections-loader.js + همه فایل‌های HTML/CSS/JS سکشن‌ها + settings/backup-validation.js + settings/backup-engine.js + settings/backup-folder.js + settings/backup-restore.js + settings/settings.js + index.js + vendor/xlsx.full.min.js',
     '  برای ساخت مجدد اجرا کنید: node scripts/build-standalone.mjs',
     '-->',
     ''
@@ -292,7 +286,6 @@ async function main() {
   assert(html.includes('id="anbar-backup-folder-script"'), 'Embedded backup folder payload was not found.');
   assert(html.includes('id="anbar-backup-restore-script"'), 'Embedded backup restore payload was not found.');
   assert(html.includes('id="anbar-settings-script"'), 'Embedded settings payload was not found.');
-  assert(html.includes('id="anbar-tag-explorer-script"'), 'Embedded tag explorer payload was not found.');
   assert((html.match(/<script(?:\s[^>]*)?>/gi) || []).length >= 1, 'Expected script loader was not found.');
 
   // Confirm the embedded payloads decode to the exact source files.
@@ -309,7 +302,6 @@ async function main() {
   assertPayloadMatches(html, 'anbar-backup-folder-script', backupFolderJs);
   assertPayloadMatches(html, 'anbar-backup-restore-script', backupRestoreJs);
   assertPayloadMatches(html, 'anbar-settings-script', settingsJsFile);
-  assertPayloadMatches(html, 'anbar-tag-explorer-script', tagExplorerJsFile);
 
   await writeFile(OUTPUT_HTML, html, 'utf8');
   console.log('Standalone build successful: anbar-standalone.html');
