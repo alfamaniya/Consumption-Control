@@ -1,0 +1,71 @@
+name: انتشار سایت در GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: اعتبارسنجی و آماده‌سازی سایت
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: دریافت مخزن
+        uses: actions/checkout@v4
+
+      - name: آماده‌سازی Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: نصب ابزارهای اعتبارسنجی
+        run: npm install --no-save --no-package-lock html-validate postcss
+
+      - name: بررسی ساخت نسخه مستقل
+        run: |
+          node --check scripts/build-standalone.mjs
+          node scripts/build-standalone.mjs
+          test -s anbar-standalone.html
+
+      - name: بررسی HTML، JavaScript و CSS
+        run: |
+          node scripts/check-code-structure.mjs
+          npx html-validate index.html admin/*.html dashboard/*.html entry/*.html inventory/*.html kardex/*.html reports/*.html settings/*.html
+
+      - name: آماده‌سازی GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: آماده‌سازی پوشه انتشار
+        run: |
+          mkdir -p _site
+          tar --exclude='./.git' --exclude='./.github' --exclude='./README.md' --exclude='./_site' -cf - . | tar -xf - -C _site
+
+      - name: بارگذاری فایل‌های سایت
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    name: انتشار نسخه تأییدشده
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: انتشار در GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

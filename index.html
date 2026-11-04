@@ -1,0 +1,136 @@
+<!-- سند HTML5؛ زبان صفحه فارسی و جهت کلی راست‌به‌چپ است. -->
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<!-- فراداده‌ها، عنوان صفحه و اتصال شیوه‌نامه اصلی. -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="سامانه فارسی کنترل مصرف اقلام؛ ورود کالا، کنترل موجودی، ارسال و گزارش‌گیری.">
+  <title>کنترل مصرف اقلام</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="dashboard/dashboard.css">
+  <link rel="stylesheet" href="entry/entry.css">
+  <link rel="stylesheet" href="inventory/inventory.css">
+  <link rel="stylesheet" href="admin/admin.css">
+</head>
+<body>
+  <div class="layout" id="app-layout">
+    <!-- هدر ثابت و ناوبری اصلی؛ پیوندها شناسه سکشن‌های داخل main را هدف می‌گیرند. -->
+    <header class="sidebar" aria-label="هدر ناوبری">
+      <div class="brand">
+        <h1>کنترل مصرف</h1>
+        <p>سامانه مدیریت اقلام</p>
+      </div>
+      <!-- فهرست ناوبری؛ مقدار href هر پیوند باید با ID سکشن مربوط هماهنگ بماند. -->
+      <nav aria-label="ناوبری بخش‌ها">
+        <p class="nav-title">دسترسی به بخش‌ها</p>
+        <ul class="nav-list">
+          <li><a class="nav-link" href="#section-dashboard"><span class="nav-number">۱</span><span>نمای کلی</span></a></li>
+          <li><a class="nav-link" href="#section-1"><span class="nav-number">۲</span><span>ورود کالا</span></a></li>
+          <li><a class="nav-link" href="#section-2"><span class="nav-number">۳</span><span>موجودی و ارسال</span></a></li>
+          <li><a class="nav-link" href="#section-4"><span class="nav-number">۴</span><span>گزارش‌ها</span></a></li>
+          <li><a class="nav-link" href="#section-5"><span class="nav-number">۵</span><span>کاردکس</span></a></li>
+          <li><a class="nav-link" href="#section-admin"><span class="nav-number">۶</span><span>مدیریت</span></a></li>
+          <li><a class="nav-link" href="#section-3"><span class="nav-number">۷</span><span>تنظیمات</span></a></li>
+
+
+        </ul>
+      </nav>
+    </header>
+    <!-- محتوای اصلی برنامه پس از ناوبری. -->
+    <main class="main">
+      <!-- سربرگ معرفی سامانه و وضعیت نمایشی فعلی رابط. -->
+            <div class="sections">
+        <!-- داشبورد از فایل اختصاصی بارگذاری می‌شود. -->
+        <div class="section-mount" data-section-mount="section-dashboard" aria-live="off"></div>
+
+        <!-- ورود کالا: داده دستی، فایل و کلیپ‌بورد پیش از ثبت در پیش‌نمایش مشترک جمع می‌شوند. -->
+        <div class="section-mount" data-section-mount="section-1" aria-live="off"></div>
+
+        <!-- موجودی و ارسال: جدول ردیف‌ها در JavaScript ساخته می‌شود؛ جست‌وجو و مرتب‌سازی همان داده را کنترل می‌کنند. -->
+        <div class="section-mount" data-section-mount="section-2" aria-live="off"></div>
+
+        <!-- گزارش‌ها: تاریخچه ورود و ارسال، جدول‌های مستقل و قابل مرتب‌سازی دارند. -->
+        <div class="section-mount" data-section-mount="section-4" aria-live="off"></div>
+
+        <div class="section-mount" data-section-mount="section-5" aria-live="off"></div>
+
+        <div class="section-mount" data-section-mount="section-admin" aria-live="off"></div>
+
+        <!-- تنظیمات: بکاپ JSON و بازگردانی. -->
+        <div class="section-mount" data-section-mount="section-3" aria-live="off"></div>
+</div>
+    </main>
+  </div>
+
+  <!-- پیش از نخستین تغییر داده، در صورت نیاز روش پشتیبان‌گیری را از کاربر می‌پرسد. -->
+  <section class="backup-setup-gate" id="backup-setup-gate" role="dialog" aria-modal="true" aria-labelledby="backup-gate-title" hidden>
+    <div class="backup-setup-card">
+      <h2 id="backup-gate-title">پیش از نخستین تغییر، روش پشتیبان‌گیری را انتخاب کنید</h2>
+      <p>این پیام فقط زمانی نمایش داده می‌شود که بخواهید برای نخستین بار اطلاعات را ذخیره یا تغییر دهید. عملیات فعلی ثبت نشده است؛ پس از انتخاب روش، آن را دوباره اجرا کنید.</p>
+      <button class="action-button success" id="backup-gate-choose-folder" type="button">انتخاب پوشه و فعال‌سازی بکاپ</button>
+      <!-- مسیر جایگزین برای مرورگرهایی که انتخاب پوشه یا ذخیره مستقیم فایل را پشتیبانی نمی‌کنند. -->
+      <button class="action-button secondary" id="backup-gate-continue-without-backup" type="button">ادامه بدون بکاپ خودکار</button>
+      <p class="backup-gate-note">در این حالت اطلاعات همچنان در حافظه محلی مرورگر ذخیره می‌شود، اما فایل پشتیبان خودکار ساخته نمی‌شود. پاک‌شدن داده‌های مرورگر یا خرابی دستگاه می‌تواند باعث از دست رفتن اطلاعات شود؛ از بخش بکاپ، فایل JSON را دستی دریافت کنید.</p>
+      <p class="backup-gate-status" id="backup-gate-status" role="status" aria-live="polite">برای ثبت تغییر، یک روش پشتیبان‌گیری انتخاب کنید.</p>
+      <p class="backup-gate-feedback" id="backup-gate-feedback" role="alert" aria-live="assertive"></p>
+      <p>برای ذخیره مستقیم فایل، از نسخه به‌روز Chrome یا Edge روی رایانه و از طریق HTTPS استفاده کنید.</p>
+    </div>
+  </section>
+
+  <!-- نسخه محلی SheetJS برای ورود Excel و خروجی گزارش، بدون وابستگی به CDN. -->
+  <script src="vendor/xlsx.full.min.js"></script>
+  <!-- پنجره‌های محاوره‌ای؛ JavaScript محتوای پویا و رفتار دکمه‌های آن‌ها را کنترل می‌کند. -->
+  <dialog class="duplicate-dialog" id="duplicate-dialog" aria-labelledby="duplicate-dialog-title">
+    <div class="duplicate-dialog-header">
+      <h3 id="duplicate-dialog-title">بررسی اقلام تکراری پیش از ورود</h3>
+      <button class="action-button secondary duplicate-close" id="duplicate-dialog-x" type="button" aria-label="بستن پنجره">بستن ✕</button>
+    </div>
+    <div class="duplicate-dialog-body" id="duplicate-dialog-details"></div>
+    <div class="duplicate-dialog-footer">
+      <button class="action-button secondary" id="duplicate-import-cancel" type="button">انصراف از ورود</button>
+      <button class="action-button" id="duplicate-import-confirm" type="button">تأیید و ادامه ورود</button>
+    </div>
+  </dialog>
+
+  <dialog class="duplicate-dialog" id="import-error-dialog" aria-labelledby="import-error-title">
+    <div class="duplicate-dialog-header"><h3 id="import-error-title">ردیف‌های دارای خطا</h3><button class="action-button secondary" id="import-error-close" type="button">بستن ✕</button></div>
+    <div class="duplicate-dialog-body" id="import-error-details"></div>
+    <div class="duplicate-dialog-footer"><button class="action-button" id="import-error-ok" type="button">متوجه شدم</button></div>
+  </dialog>
+  <!-- فرم تأیید ارسال؛ مقادیر دوباره با موجودی جاری اعتبارسنجی می‌شوند. -->
+  <dialog class="shipment-dialog" id="shipment-dialog" aria-labelledby="shipment-dialog-title">
+    <form id="shipment-form" novalidate>
+      <div class="shipment-header"><h3 id="shipment-dialog-title">تأیید نهایی ارسال کالاها</h3><button class="action-button shipment-close" id="shipment-dialog-x" type="button">بستن ✕</button></div>
+      <div class="shipment-body">
+        <p class="preview-message">تعداد هر کالا را بررسی و در صورت نیاز ویرایش کنید. تعداد ارسالی باید بیشتر از صفر و حداکثر برابر موجودی باشد.</p>
+        <div class="shipment-items" id="shipment-items"></div>
+        <div class="shipment-meta">
+          <div class="field-group"><label for="shipment-location">محل ارسال</label><input id="shipment-location" list="shipment-location-options" required maxlength="120" autocomplete="off"><datalist id="shipment-location-options"></datalist></div>
+<div class="field-group" id="shipment-sublocation-group"><label for="shipment-sublocation">زیرمجموعه محل ارسال (اختیاری)</label><input id="shipment-sublocation" list="shipment-sublocation-options" maxlength="120" autocomplete="off"><datalist id="shipment-sublocation-options"></datalist></div>
+          <div class="field-group"><label for="shipment-voucher">شماره حواله</label><input id="shipment-voucher" type="text" maxlength="80" placeholder="خالی بماند تا خودکار ساخته شود"></div>
+          <div class="field-group"><label for="shipment-exit-number">شماره خروج کالا</label><input id="shipment-exit-number" type="text" maxlength="80" placeholder="خالی بماند تا خودکار ساخته شود"></div>
+        </div>
+        <p class="shipment-note">اگر شماره حواله یا شماره خروج وارد نشود، سیستم آن را با تاریخ خورشیدی و ساعت به‌صورت خودکار ایجاد می‌کند.</p>
+        <p class="shipment-feedback" id="shipment-feedback" role="alert" aria-live="assertive"></p>
+      </div>
+      <div class="shipment-footer"><button class="action-button shipment-close" id="shipment-cancel" type="button">انصراف</button><button class="action-button success" id="confirm-shipment" type="submit">تأیید نهایی ارسال</button></div>
+    </form>
+  </dialog>
+
+  <!-- پنجره مشترک تأیید موفقیت ورود و ارسال؛ اطلاعات از سند ذخیره‌شده پر می‌شود. -->
+  <dialog class="operation-success-dialog" id="operation-success-dialog" aria-labelledby="operation-success-title">
+    <div class="duplicate-dialog-header">
+      <h3 id="operation-success-title">عملیات با موفقیت انجام شد</h3>
+      <button class="action-button secondary" id="operation-success-close" type="button" aria-label="بستن پنجره">بستن ✕</button>
+    </div>
+    <div class="operation-success-body" id="operation-success-content"></div>
+    <div class="duplicate-dialog-footer">
+      <button class="action-button success" id="operation-success-ok" type="button">تأیید</button>
+    </div>
+  </dialog>
+
+  <!-- منطق برنامه در انتهای body بارگیری می‌شود تا عناصر HTML پیش از اتصال رویدادها حاضر باشند. -->
+  <script src="sections-loader.js"></script>
+</body>
+</html>

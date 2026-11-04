@@ -1,0 +1,59 @@
+/* استایل‌های اختصاصی سکشن مدیریت؛ قواعد فرم و فهرست عمومی در index.css باقی می‌مانند. */
+/* چیدمان بخش مدیریت و فرم ورود رمز */
+.admin-login-panel { max-width: 460px; margin: 20px auto; }
+.admin-login-form { display: grid; gap: 12px; padding: 22px; border: 1px solid var(--line); border-radius: 14px; background: var(--surface, #fff); }
+.admin-login-form h3, .admin-login-form p { margin: 0; }
+.admin-content[hidden], .admin-login-panel[hidden] { display: none !important; }
+#category-manager-list { display: grid; gap: 8px; margin-top: 12px; }
+#category-manager-list .location-record { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+#category-manager-list .location-record strong { flex: 1 1 130px; overflow-wrap: anywhere; }
+#category-manager-list .location-record span { color: var(--muted); font-size: 12px; }
+/* مدیریت حذف کالا؛ این کنترل‌ها فقط در سکشن مدیریت نمایش داده می‌شوند. */
+.admin-inventory-delete-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 14px 0;
+}
+.admin-inventory-delete-list {
+  max-height: 420px;
+  overflow: auto;
+  border: 1px solid var(--border-color, #d9e0e8);
+  border-radius: 10px;
+  padding: 8px;
+}
+.admin-inventory-delete-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 10px;
+}
+.admin-inventory-delete-row + .admin-inventory-delete-row {
+  border-top: 1px solid var(--border-color, #e5e9ef);
+}
+.admin-inventory-delete-row input {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 18px;
+}
+.admin-inventory-delete-row .location-record-details {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+.admin-inventory-delete-row small {
+  color: var(--muted-color, #687386);
+}
+@media (max-width: 640px) {
+.admin-inventory-delete-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+.admin-inventory-delete-toolbar .action-button {
+    width: 100%;
+  }
+
+}

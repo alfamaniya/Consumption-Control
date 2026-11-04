@@ -1,0 +1,404 @@
+/* استایل‌های اختصاصی داشبورد؛ قواعد مشترک در index.css نگهداری می‌شوند. */
+/* ---------- ۵) نمای کلی ---------- */
+.dashboard-section { width: 100%; max-width: 100%; box-sizing: border-box; padding: clamp(14px, 2.4vw, 26px); }
+.dashboard-eyebrow, .dashboard-panel-kicker { display: none; }
+.dashboard-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 18px;
+  padding: clamp(20px, 3vw, 32px);
+  overflow: hidden;
+  border-radius: 20px;
+  color: #fff;
+  background:
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, .045) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(90deg, rgba(255, 255, 255, .045) 0 1px, transparent 1px 28px),
+    linear-gradient(120deg, var(--ink) 0%, var(--ink-soft) 100%);
+  box-shadow: 0 10px 28px rgba(20, 40, 75, .18);
+}
+.dashboard-hero::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0 0;
+  z-index: -1;
+  height: 5px;
+  background: linear-gradient(90deg, var(--blue) 0 25%, var(--yellow) 25% 50%, var(--green) 50% 75%, var(--red) 75% 100%);
+}
+.dashboard-hero-copy { min-width: 0; }
+.dashboard-hero h2 { margin: 0 0 8px; color: #fff; font-size: clamp(22px, 3vw, 32px); line-height: 1.5; }
+.dashboard-hero p { max-width: 560px; margin: 0; color: #cddcf5; font-size: 13px; line-height: 1.95; }
+.dashboard-primary-link {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 48px;
+  padding: 11px 20px;
+  border-radius: 12px;
+  background: var(--yellow);
+  color: #1b2a44;
+  font-size: 14px;
+  font-weight: 800;
+  text-decoration: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, .22);
+  transition: background-color 150ms ease, transform 150ms ease;
+}
+.dashboard-primary-link:hover { background: #fde047; transform: translateY(-1px); }
+.dashboard-hero a:focus-visible { outline-color: #fff; }
+.dashboard-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 18px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+.dashboard-stat {
+  --tone: var(--blue);
+  --tone-soft: var(--blue-wash);
+  position: relative;
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+  padding: 22px 20px 24px;
+  background: #fff;
+}
+.dashboard-stat + .dashboard-stat { border-inline-start: 1px solid var(--line); }
+.dashboard-stat::after { content: ""; position: absolute; inset: auto 0 0 0; height: 4px; background: var(--tone); }
+.dashboard-stat-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: var(--tone-soft);
+  color: #1b2a44;
+  font-size: 18px;
+  font-weight: 800;
+}
+.dashboard-stat-content { display: grid; flex: 1; gap: 2px; min-width: 0; text-align: right; }
+.dashboard-stat-content p { margin: 0; color: #3b4a63; font-size: 13px; font-weight: 700; }
+.dashboard-stat-content strong {
+  color: var(--ink);
+  font-size: clamp(28px, 2.8vw, 38px);
+  font-weight: 800;
+  line-height: 1.3;
+  font-variant-numeric: tabular-nums;
+}
+.dashboard-stat-content span { color: var(--muted); font-size: 11px; line-height: 1.6; }
+.dashboard-panels { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 16px; }
+.dashboard-panel { min-width: 0; padding: 20px; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: var(--shadow); }
+.dashboard-panel-heading { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 14px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
+.dashboard-panel-heading h3 { margin: 0; color: var(--ink); font-size: 17px; }
+.dashboard-panel-mark {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 34px;
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  background: var(--wash);
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 800;
+}
+.dashboard-panel-mark-warm { background: var(--yellow-wash); color: #713f12; }
+.dashboard-quick-links { display: grid; gap: 8px; }
+.dashboard-quick-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 62px;
+  padding: 10px 16px 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--wash);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 150ms ease, background-color 150ms ease;
+}
+.dashboard-quick-link::before { content: ""; position: absolute; inset-block: 10px; inset-inline-start: 0; width: 4px; border-radius: 4px; background: var(--blue); }
+.dashboard-quick-link:nth-child(2)::before { background: var(--yellow); }
+.dashboard-quick-link:nth-child(3)::before { background: var(--green); }
+.dashboard-quick-link:nth-child(4)::before { background: var(--red); }
+.dashboard-quick-link:hover { border-color: #93b4f0; background: #fff; }
+.dashboard-quick-link > span:nth-child(2) { display: grid; gap: 1px; min-width: 0; }
+.dashboard-quick-link strong { color: var(--ink); font-size: 13px; }
+.dashboard-quick-link small { color: var(--muted); font-size: 11px; line-height: 1.6; }
+.dashboard-stock-alert { display: flex; align-items: center; gap: 14px; padding: 16px; border: 1px solid #fde68a; border-radius: 14px; background: #fffbeb; }
+.dashboard-alert-icon { display: inline-grid; place-items: center; flex: 0 0 42px; width: 42px; height: 42px; border-radius: 12px; background: var(--red); color: #fff; font-size: 20px; font-weight: 900; }
+.dashboard-stock-alert > div { display: grid; gap: 2px; }
+.dashboard-stock-alert strong { color: #991b1b; font-size: 30px; font-weight: 800; line-height: 1.3; }
+.dashboard-stock-alert span:last-child { color: #713f12; font-size: 13px; }
+.dashboard-stock-toggle { width: 100%; margin-top: 12px; }
+.dashboard-stock-list {
+  max-height: 340px;
+  margin-top: 10px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: #fff;
+}
+.dashboard-stock-list[hidden] { display: none; }
+.dashboard-stock-items { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; }
+.dashboard-stock-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 11px 13px;
+}
+.dashboard-stock-item + .dashboard-stock-item { border-top: 1px solid var(--line); }
+.dashboard-stock-item-details { display: grid; gap: 3px; min-width: 0; }
+.dashboard-stock-item-details strong { overflow-wrap: anywhere; color: var(--ink); font-size: 13px; }
+.dashboard-stock-item-details small { color: var(--muted); font-size: 11px; }
+.dashboard-stock-item-quantity {
+  flex: 0 0 auto;
+  min-width: 42px;
+  padding: 5px 9px;
+  border-radius: 8px;
+  background: var(--green-wash);
+  color: #14532d;
+  font-size: 13px;
+  font-weight: 800;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+.dashboard-stock-empty { margin: 0; padding: 14px; color: var(--muted); font-size: 12px; text-align: center; }
+.dashboard-note { margin: 14px 0 0; color: #4b5b73; font-size: 12px; line-height: 1.95; }
+.dashboard-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 14px; }
+.dashboard-tags span { padding: 4px 10px; border: 1px solid var(--line); border-radius: 999px; background: var(--wash); color: #4b5b73; font-size: 11px; }
+@media (max-width: 1080px) {
+/* سه شاخص نمای کلی تا عرض تبلت در یک ردیف و با اندازه یکسان باقی می‌مانند. */
+  .dashboard-stats { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.dashboard-stat:nth-child(3) { border-inline-start: 1px solid var(--line); }
+.dashboard-stat:nth-child(n + 3) { border-top: 0; }
+
+}
+@media (max-width: 760px) {
+.dashboard-hero { flex-direction: column; align-items: stretch; }
+.dashboard-primary-link { align-self: stretch; }
+.dashboard-stats { grid-template-columns: minmax(0, 1fr); }
+.dashboard-stat + .dashboard-stat { border-inline-start: 0; border-top: 1px solid var(--line); }
+.dashboard-panels { grid-template-columns: minmax(0, 1fr); }
+
+}
+@media (max-width: 480px) {
+.dashboard-stats { grid-template-columns: minmax(0, 1fr); }
+.dashboard-stat + .dashboard-stat { border-inline-start: 0; border-top: 1px solid var(--line); }
+.dashboard-stat { padding: 18px 16px 20px; }
+.dashboard-hero { padding: 16px; }
+
+}
+/* ---------- سکشن ارتباط با توسعه‌دهنده ---------- */
+
+
+
+
+
+
+/* هدر اصلی تیره می‌ماند؛ هدرهای زیرمجموعه با ظاهر روشن و ارتفاع کمتر نمایش داده می‌شوند. */
+.dashboard-hero-compact {
+  display: block;
+  width: min(100%, 760px);
+  min-height: 0;
+  margin: 0 0 12px;
+  padding: 8px 12px;
+  overflow: hidden;
+  border: 1px solid #dce6f2;
+  border-radius: 10px;
+  background: #edf3fa;
+  color: var(--ink);
+  box-shadow: none;
+}
+.dashboard-hero-compact::after {
+  height: 2px;
+  background: #c6d7eb;
+}
+.dashboard-hero-compact .dashboard-hero-copy { min-width: 0; }
+.dashboard-hero-compact .dashboard-eyebrow {
+  display: block;
+  margin: 0 0 1px;
+  color: #647b99;
+  font-size: 9px;
+  line-height: 1.4;
+  font-weight: 700;
+}
+.dashboard-hero-compact h3,
+.dashboard-hero-compact h4 {
+  margin: 0;
+  color: #263b57;
+  font-size: 13px;
+  line-height: 1.55;
+}
+.dashboard-hero-compact p {
+  max-width: 620px;
+  margin: 2px 0 0;
+  color: #64748b;
+  font-size: 10px;
+  line-height: 1.55;
+}
+.settings-box > .dashboard-hero-compact { width: 100%; }
+/* تیترهای داخلی در سایر سکشن‌ها نیز از همین الگوی روشن و جمع‌وجور پیروی می‌کنند. */
+.dashboard-panel-heading {
+  min-height: 0;
+  margin: 0 0 12px;
+  padding: 8px 11px;
+  border: 1px solid #dce6f2;
+  border-radius: 10px;
+  background: #edf3fa;
+}
+.dashboard-panel-heading h3 {
+  color: #263b57;
+  font-size: 14px;
+  line-height: 1.55;
+}
+.dashboard-panel-heading .dashboard-panel-kicker {
+  display: block;
+  margin-bottom: 1px;
+  color: #647b99;
+  font-size: 9px;
+}
+.settings-box > h4:not(.dashboard-hero-compact h4) {
+  padding: 8px 11px;
+  border: 1px solid #dce6f2;
+  border-radius: 10px;
+  background: #edf3fa;
+  color: #263b57;
+  font-size: 14px;
+  line-height: 1.55;
+}
+@media (max-width: 760px) {
+.dashboard-hero-compact {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 7px 10px;
+  }
+.dashboard-panel-heading { padding: 7px 10px; }
+
+}
+.dashboard-hero-compact {
+  max-width: none;
+  height: auto;
+}
+.dashboard-hero-compact .dashboard-hero-copy {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0 8px;
+  width: 100%;
+}
+.dashboard-hero-compact .dashboard-eyebrow {
+  margin: 0;
+}
+.dashboard-hero-compact h3,
+.dashboard-hero-compact h4 {
+  line-height: 1.45;
+}
+.dashboard-hero-compact p {
+  margin: 0;
+  line-height: 1.45;
+}
+.dashboard-panel-heading {
+  justify-content: space-between;
+}
+.dashboard-hero:not(.dashboard-hero-compact) {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 94px;
+  padding: 12px 20px;
+  align-items: center;
+}
+.dashboard-hero:not(.dashboard-hero-compact) .dashboard-hero-copy {
+  min-width: 0;
+}
+.dashboard-hero:not(.dashboard-hero-compact) h2 {
+  margin: 0 0 2px;
+  font-size: clamp(18px, 2.2vw, 24px);
+  line-height: 1.45;
+}
+.dashboard-hero:not(.dashboard-hero-compact) p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.dashboard-hero:not(.dashboard-hero-compact)::after {
+  height: 4px;
+}
+@media (max-width: 760px) {
+.dashboard-hero:not(.dashboard-hero-compact) {
+    min-height: 94px;
+    padding: 10px 12px;
+  }
+
+}
+.dashboard-hero-compact::after {
+  background: rgba(255, 255, 255, 0.55);
+}
+.dashboard-hero-compact .dashboard-eyebrow,
+.dashboard-panel-heading .dashboard-panel-kicker {
+  color: #f1d5f5;
+}
+.dashboard-hero-compact p {
+  color: #f6e9f8;
+}
+/* باکس مستقل هشدار کمبود موجودی در نمای کلی */
+.dashboard-low-stock-alert {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 14px;
+  padding: 14px 16px;
+  border: 1px solid #fecaca;
+  border-radius: 14px;
+  background: #fff1f2;
+}
+.dashboard-low-stock-icon {
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: #dc2626;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 900;
+}
+.dashboard-low-stock-alert > div { display: grid; gap: 2px; }
+.dashboard-low-stock-alert strong {
+  color: #991b1b;
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.3;
+}
+.dashboard-low-stock-alert span:last-child {
+  color: #7f1d1d;
+  font-size: 12px;
+}
+.dashboard-low-stock-toggle { width: 100%; margin-top: 10px; }
+.dashboard-low-stock-list {
+  max-height: 300px;
+  margin-top: 9px;
+  overflow: auto;
+  border: 1px solid #fecaca;
+  border-radius: 12px;
+  background: #fff;
+}
+.dashboard-low-stock-list[hidden] { display: none; }
+.dashboard-stock-item-quantity.is-low {
+  background: #fee2e2;
+  color: #991b1b;
+}

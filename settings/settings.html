@@ -1,0 +1,68 @@
+<section class="section-card" id="section-3" aria-labelledby="title-3">
+          <div class="dashboard-hero">
+            <div class="dashboard-hero-copy">
+              <span class="dashboard-eyebrow">پیکربندی سامانه</span>
+              <h2 id="title-3">تنظیمات</h2>
+              <p>مدیریت محل‌های ارسال، تنظیم پشتیبان‌گیری و بازیابی اطلاعات را از این قسمت انجام دهید.</p>
+            </div>
+          </div>
+          <div class="settings-grid">
+            <article class="settings-box">
+              <div class="dashboard-hero dashboard-hero-compact"><div class="dashboard-hero-copy"><span class="dashboard-eyebrow">حفاظت از داده‌ها</span><h4>مدیریت پشتیبان</h4><p>برنامه ذخیره خودکار و دریافت فایل پشتیبان را تنظیم کنید.</p></div></div>
+              <p>هر روز یک فایل تاریخ‌دار ساخته می‌شود و در همان روز، تاریخچه قبلی فایل فقط با رکوردهای جدید تکمیل می‌شود. تاریخچه‌های موجود حذف یا با آرایه خالی جایگزین نمی‌شوند؛ فایل‌های ماه‌های قبل نیز باقی می‌مانند.</p>
+              <div class="field-group">
+                <label for="backup-frequency">برنامهٔ ذخیرهٔ خودکار</label>
+                <select id="backup-frequency">
+                  <option value="change">پس از هر تغییر (با تأخیر کوتاه)</option>
+                  <option value="daily">روزانه</option>
+                  <option value="weekly">هفتگی</option>
+                </select>
+                <span class="field-hint">در برنامهٔ باز، پشتیبان‌گیری در این بازه تکرار می‌شود؛ هنگام بسته‌بودن مرورگر اجرای پس‌زمینه ممکن نیست.</span>
+              </div>
+              <div class="backup-folder-actions">
+                <button class="action-button success" id="choose-backup-folder" type="button">فعال‌سازی پوشه ذخیره‌شده</button>
+                <button class="action-button secondary" id="change-backup-folder" type="button">انتخاب یا تغییر پوشه بکاپ</button>
+              </div>
+              <div class="backup-folder-actions">
+                <button class="action-button" id="run-backup-now" type="button">ذخیرهٔ پشتیبان اکنون</button>
+                <button class="action-button secondary" id="download-backup-json" type="button">دریافت فایل JSON</button>
+              </div>
+              <div class="field-group">
+                <label for="backup-folder-path">نام پوشه ذخیره‌سازی بکاپ</label>
+                <input id="backup-folder-path" type="text" readonly placeholder="پس از انتخاب پوشه نمایش داده می‌شود">
+                <span class="field-hint">مرورگر به دلایل امنیتی مسیر کامل پوشه را در اختیار سایت نمی‌گذارد؛ نام پوشه انتخاب‌شده در این قسمت نمایش داده می‌شود.</span>
+              </div>
+              <p class="field-hint" id="backup-folder-status" role="status" aria-live="polite">هنوز پوشه ذخیره‌سازی انتخاب نشده است. مرورگر فقط نام پوشه را نمایش می‌دهد و مسیر کامل را در اختیار صفحه وب نمی‌گذارد.</p>
+              <p class="feedback" id="backup-feedback" role="status" aria-live="polite"></p>
+            </article>
+            <article class="settings-box">
+              <div class="dashboard-hero dashboard-hero-compact"><div class="dashboard-hero-copy"><span class="dashboard-eyebrow">بازیابی اطلاعات</span><h4>بررسی و بازیابی پشتیبان</h4><p>فایل JSON را اعتبارسنجی کنید و اطلاعات موردنیاز را بازیابی کنید.</p></div></div>
+              <p>می‌توانید چند فایل JSON را یکجا انتخاب کنید. همه فایل‌ها پیش از شروع بررسی می‌شوند؛ تاریخچه ورود و ارسال در هر دو روش بازیابی فقط به‌صورت افزایشی ادغام می‌شود و هرگز جایگزین یا حذف نمی‌شود.</p>
+              <div class="field-group">
+                <label for="restore-json-file">فایل‌های پشتیبان JSON (امکان انتخاب هم‌زمان چند فایل)</label>
+                <input id="restore-json-file" type="file" accept=".json,application/json" multiple>
+              </div>
+              <div class="field-group">
+                <label for="restore-strategy">روش بازیابی</label>
+                <select id="restore-strategy">
+                  <option value="merge">ادغام موارد جدید (ایمن و پیش‌فرض)</option>
+                  <option value="replace">جایگزینی موجودی و محل‌ها (حفظ تاریخچه)</option>
+                </select>
+              </div>
+              <fieldset class="restore-sections">
+                <legend>بخش‌های بازیابی</legend>
+                <label><input type="checkbox" name="restore-section" value="inventory" checked> موجودی کالا</label>
+                <label><input type="checkbox" name="restore-section" value="entryHistory" checked> تاریخچه ورود</label>
+                <label><input type="checkbox" name="restore-section" value="shipments" checked> تاریخچه ارسال</label>
+                <label><input type="checkbox" name="restore-section" value="activityLog" checked> تاریخچه رخدادهای قدیمی</label>
+                <label><input type="checkbox" name="restore-section" value="shipmentLocations" checked> محل‌ها و زیرمجموعه‌ها</label>
+                <label><input type="checkbox" name="restore-section" value="categoryGroups" checked> گروه‌های کالا</label>
+              </fieldset>
+              <p class="restore-warning" id="restore-mode-warning" role="status">تاریخچه ورود و ارسال در هیچ‌یک از روش‌ها حذف یا جایگزین نمی‌شود؛ فقط رکوردهای جدید به آن افزوده می‌شوند.</p>
+              <pre class="restore-preview" id="restore-preview" aria-live="polite">پس از انتخاب فایل، خلاصهٔ اعتبارسنجی و مغایرت‌ها اینجا نمایش داده می‌شود.</pre>
+              <button class="action-button success" id="restore-json-backup" type="button" disabled>بازگردانی اطلاعات</button>
+              <p class="feedback" id="restore-feedback" role="status" aria-live="polite"></p>
+            </article>
+
+          </div>
+        </section>

@@ -1,0 +1,72 @@
+<section class="section-card" id="section-admin" aria-labelledby="admin-title">
+  <div class="dashboard-hero">
+    <div class="dashboard-hero-copy">
+      <span class="dashboard-eyebrow">دسترسی حفاظت‌شده</span>
+      <h2 id="admin-title">مدیریت</h2>
+      <p>مدیریت محل‌های ارسال، گروه‌های کالا و عملیات حساس موجودی در این بخش انجام می‌شود.</p>
+    </div>
+  </div>
+  <div class="admin-login-panel" id="admin-login-panel">
+    <form id="admin-login-form" class="admin-login-form">
+      <h3>ورود به بخش مدیریت</h3>
+      <p>برای ادامه، رمز مدیریت را وارد کنید.</p>
+      <div class="field-group">
+        <label for="admin-password">رمز عبور</label>
+        <input id="admin-password" type="password" inputmode="numeric" autocomplete="current-password" required maxlength="32">
+      </div>
+      <button class="action-button success" type="submit">ورود</button>
+      <p class="feedback" id="admin-login-feedback" role="alert" aria-live="polite"></p>
+    </form>
+  </div>
+  <div class="admin-content" id="admin-content" hidden>
+      <article class="settings-box admin-inventory-delete-panel">
+        <div class="dashboard-hero dashboard-hero-compact">
+          <div class="dashboard-hero-copy">
+            <span class="dashboard-eyebrow">عملیات حساس و محدود</span>
+            <h4>مدیریت و حذف کالاها</h4>
+            <p>حذف کالا فقط از این بخش و پس از ورود مدیر امکان‌پذیر است. سوابق ورود و ارسال کالا حذف نمی‌شوند.</p>
+          </div>
+        </div>
+        <div class="field-group">
+          <label for="admin-inventory-search">جست‌وجوی کالا برای مدیریت</label>
+          <input id="admin-inventory-search" type="search" autocomplete="off" placeholder="کد تدارکاتی یا شرح کالا">
+        </div>
+        <div class="admin-inventory-delete-toolbar">
+          <label class="select-all-label" for="admin-select-all-items">
+            <input id="admin-select-all-items" type="checkbox"> انتخاب همه نتایج
+          </label>
+          <button class="action-button danger" id="admin-delete-selected-items" type="button" disabled>حذف کالاهای انتخاب‌شده (۰)</button>
+        </div>
+        <div id="admin-inventory-delete-list" class="location-list admin-inventory-delete-list" aria-live="polite"></div>
+        <p class="feedback" id="admin-inventory-delete-feedback" role="status" aria-live="polite"></p>
+      </article>
+
+    <div class="settings-grid">
+            <article class="settings-box">
+              <div class="dashboard-hero dashboard-hero-compact"><div class="dashboard-hero-copy"><span class="dashboard-eyebrow">فهرست مقصدها</span><h4>مدیریت محل‌های ارسال</h4><p>محل‌های ارسال و زیرمجموعه‌های آن‌ها را ثبت و مدیریت کنید.</p></div></div>
+              <p>محل و زیرمجموعه را اضافه کنید؛ در ارسال‌های بعدی نیز قابل انتخاب خواهند بود.</p>
+              <form id="location-create-form" class="location-create-form">
+                <div class="field-group"><label for="new-location-name">نام محل ارسال</label><input id="new-location-name" required maxlength="120" autocomplete="off"></div>
+                <div class="field-group"><label for="new-location-subs">زیرمجموعه‌ها</label><input id="new-location-subs" maxlength="500" placeholder="چند زیرمجموعه را با ویرگول جدا کنید"></div>
+                <button class="action-button" type="submit">ذخیره محل</button>
+              </form>
+              <p class="feedback" id="location-manager-feedback" role="status" aria-live="polite"></p>
+              <div class="saved-locations-section">
+                <h5>محل‌های ذخیره‌شده</h5>
+                <p class="field-hint">هر محل را از فهرست زیر به‌صورت دستی حذف کنید؛ سوابق ارسال قبلی باقی می‌مانند.</p>
+                <div id="location-manager-list" class="location-list" aria-live="polite"></div>
+              </div>
+            </article>
+
+      <article class="settings-box">
+        <div class="dashboard-hero dashboard-hero-compact"><div class="dashboard-hero-copy"><span class="dashboard-eyebrow">دسته‌بندی اقلام</span><h4>مدیریت گروه‌های کالا</h4><p>گروه‌های ثبت‌شده را اضافه، تغییر نام یا حذف کنید.</p></div></div>
+        <form id="category-manager-form" class="location-create-form">
+          <div class="field-group"><label for="new-category-name">نام گروه کالا</label><input id="new-category-name" maxlength="80" autocomplete="off" required></div>
+          <button class="action-button" type="submit">افزودن گروه</button>
+        </form>
+        <p class="feedback" id="category-manager-feedback" role="status" aria-live="polite"></p>
+        <div id="category-manager-list" class="location-list" aria-live="polite"></div>
+      </article>
+    </div>
+  </div>
+</section>

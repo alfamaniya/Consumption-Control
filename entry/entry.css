@@ -1,0 +1,22 @@
+
+/* استایل‌های اختصاصی سکشن ورود کالا؛ قواعد عمومی فرم و جدول در index.css نگهداری می‌شوند. */
+.input-panels { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: stretch; gap: 14px; margin-top: 6px; }
+.input-panel { min-width: 0; padding: 20px; border: 1px solid var(--line); border-top: 4px solid var(--blue); border-radius: 14px; background: var(--wash); }
+.input-panel:nth-child(2) { border-top-color: var(--green); }
+.input-panel:nth-child(3) { border-top-color: var(--yellow); }
+#excel-preview, #single-preview, #bulk-preview { display: none; }
+.shared-preview-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-top: 20px; }
+.shared-input-preview { min-width: 0; margin-top: 12px; }
+.shared-input-preview .preview-table-wrap { max-height: 520px; overflow: auto; }
+@media (max-width: 1200px) {
+  .input-panels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .input-panel:nth-child(3) { grid-column: 1 / -1; }
+}
+@media (max-width: 760px) {
+  .input-panels { grid-template-columns: minmax(0, 1fr); }
+  .input-panel:nth-child(3) { grid-column: auto; }
+  .shared-preview-actions { flex-direction: column-reverse; align-items: stretch; }
+}
+@media (min-width: 1201px) {
+  .input-panels { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}

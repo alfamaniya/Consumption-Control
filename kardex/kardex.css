@@ -1,0 +1,175 @@
+/* استایل‌های مستقل سکشن کاردکس. */
+/* جست‌وجوی مستقل کاردکس بر اساس کد تدارکاتی و شرح کالا */
+#section-5 .kardex-search-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) minmax(170px, .75fr);
+  gap: 12px;
+  min-width: 0;
+}
+#section-5 .kardex-search-row .field-group {
+  min-width: 0;
+}
+#section-5 .kardex-search-row input,
+#section-5 .kardex-search-row select {
+  width: 100%;
+  box-sizing: border-box;
+}
+@media (max-width: 720px) {
+#section-5 .kardex-search-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+}
+/* کاردکس: جدول فقط پس از جست‌وجوی کد یا شرح نمایش داده می‌شود و در عرض سکشن جا می‌گیرد. */
+#section-5 .entry-history-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+#section-5 .kardex-table {
+  width: 100%;
+  min-width: 0 !important;
+  max-width: 100%;
+  table-layout: fixed;
+}
+#section-5 .kardex-table th,
+#section-5 .kardex-table td {
+  box-sizing: border-box;
+  min-width: 0 !important;
+  max-width: none;
+  padding: 8px 5px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: 11px;
+  line-height: 1.6;
+}
+#section-5 .kardex-table th:nth-child(1),
+#section-5 .kardex-table td:nth-child(1) { width: 12%; }
+#section-5 .kardex-table th:nth-child(2),
+#section-5 .kardex-table td:nth-child(2) { width: 7%; }
+#section-5 .kardex-table th:nth-child(3),
+#section-5 .kardex-table td:nth-child(3) { width: 11%; }
+#section-5 .kardex-table th:nth-child(4),
+#section-5 .kardex-table td:nth-child(4) { width: 11%; }
+#section-5 .kardex-table th:nth-child(5),
+#section-5 .kardex-table td:nth-child(5) { width: 19%; }
+#section-5 .kardex-table th:nth-child(6),
+#section-5 .kardex-table td:nth-child(6) { width: 14%; }
+#section-5 .kardex-table th:nth-child(n+7),
+#section-5 .kardex-table td:nth-child(n+7) { width: 8.66%; }
+@media (max-width: 640px) {
+#section-5 .kardex-table th,
+  #section-5 .kardex-table td {
+    padding: 6px 3px;
+    font-size: 10px;
+  }
+
+}
+/* کاردکس تک‌کالایی: مشخصات و موجودی فقط برای کالای یکتای جست‌وجوشده نمایش داده می‌شود. */
+#section-5 .kardex-search-panel {
+  width: 100%;
+  margin: 0 0 14px;
+}
+#section-5 .kardex-search-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+#section-5 .kardex-search-row .field-group { min-width: 0; margin: 0; }
+#section-5 .kardex-search-row input { box-sizing: border-box; width: 100%; min-width: 0; }
+#section-5 .kardex-item-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(170px, 230px);
+  gap: 12px;
+  align-items: stretch;
+  margin: 0 0 16px;
+}
+#section-5 .kardex-item-summary[hidden] { display: none; }
+#section-5 .kardex-item-identity,
+#section-5 .kardex-stock-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  min-width: 0;
+  padding: 12px 15px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--wash);
+}
+#section-5 .kardex-item-label,
+#section-5 .kardex-stock-box > span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+}
+#section-5 .kardex-item-identity > strong {
+  color: var(--ink);
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+#section-5 .kardex-item-identity > span:last-child { font-size: 12px; }
+#section-5 .kardex-stock-box { border-color: #029b94; background: #e8fbfa; }
+#section-5 .kardex-stock-box strong {
+  color: #087e78;
+  font-size: 23px;
+  font-variant-numeric: tabular-nums;
+}
+#section-5 .entry-history-table-wrap { overflow-x: hidden; }
+#section-5 .kardex-table { width: 100%; min-width: 0 !important; table-layout: fixed; }
+@media (max-width: 640px) {
+#section-5 .kardex-search-row,
+  #section-5 .kardex-item-summary { grid-template-columns: minmax(0, 1fr); }
+
+}
+/* پیشنهادهای زنده جست‌وجوی کاردکس؛ انتخاب هر پیشنهاد، کاردکس همان یک کالا را باز می‌کند. */
+#section-5 .kardex-autocomplete-group {
+  position: relative;
+  z-index: 5;
+}
+#section-5 .kardex-suggestions {
+  position: absolute;
+  z-index: 30;
+  inset-inline: 0;
+  top: calc(100% + 4px);
+  max-height: 280px;
+  overflow-y: auto;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--surface, #fff);
+  box-shadow: 0 10px 24px rgb(15 23 42 / 14%);
+}
+#section-5 .kardex-suggestions[hidden] { display: none; }
+#section-5 .kardex-suggestion-option {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  width: 100%;
+  padding: 10px 12px;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink);
+  text-align: right;
+  cursor: pointer;
+}
+#section-5 .kardex-suggestion-option:last-child { border-bottom: 0; }
+#section-5 .kardex-suggestion-option:hover,
+#section-5 .kardex-suggestion-option:focus-visible {
+  outline: none;
+  background: var(--wash);
+}
+#section-5 .kardex-suggestion-option strong {
+  font-size: 12px;
+  font-weight: 700;
+  overflow-wrap: anywhere;
+}
+#section-5 .kardex-suggestion-option span,
+#section-5 .kardex-suggestion-empty {
+  color: var(--muted);
+  font-size: 11px;
+}
+#section-5 .kardex-suggestion-empty { padding: 10px 12px; }
+

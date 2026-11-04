@@ -1,0 +1,136 @@
+/* استایل‌های اختصاصی سکشن گزارش‌ها؛ متغیرها و اجزای عمومی از index.css به ارث می‌رسند. */
+
+/* ---------- ۸) گزارش‌ها ---------- */
+.reports-overview { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin: 0 0 18px; }
+.report-view-field { max-width: 360px; margin-bottom: 12px; }
+.report-view-field .field-group { margin: 0; }
+.report-metric { display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 14px 18px; border: 1px solid var(--line); border-right: 4px solid var(--blue); border-radius: 14px; background: #fff; box-shadow: var(--shadow); }
+.report-metric:nth-child(2) { border-right-color: var(--green); }
+.report-metric:nth-child(3) { border-right-color: var(--yellow); }
+.report-metric span { color: var(--muted); font-size: 13px; }
+.report-metric strong { color: var(--ink); font-size: 22px; overflow-wrap: anywhere; }
+.reports-grid { grid-template-columns: minmax(0, 1fr) !important; }
+.reports-grid > .settings-box { grid-column: 1 / -1 !important; grid-row: auto !important; width: 100%; }
+.entry-history-panel { min-width: 0; }
+.reports-grid .preview-panel { margin-top: 8px; padding: 0; border: 0; background: transparent; }
+.entry-history-table-wrap { width: 100%; max-width: 100%; overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch; }
+.entry-history-table { min-width: 760px; }
+.shipment-history-table { min-width: 1000px; }
+.entry-history-table th, .entry-history-table td { text-align: center; }
+.entry-history-number { direction: ltr; unicode-bidi: plaintext; overflow-wrap: anywhere; }
+.entry-sort-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; width: 100%; min-height: 36px; padding: 4px 6px; border: 0; border-radius: 6px; background: transparent; color: inherit; font-size: 12px; font-weight: 700; cursor: pointer; }
+.entry-sort-button:hover { background: rgba(255, 255, 255, .7); }
+.entry-sort-button span { color: var(--blue-strong); }
+.entry-history-pagination { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--line); }
+.entry-history-pagination span { color: var(--muted); font-size: 12px; }
+.entry-history-pagination .action-button { min-width: 90px; min-height: 36px; padding: 5px 14px; }
+
+/* گزارش تفصیلی از تاریخچه ارسال، با فیلترهایی که در موبایل هم تک‌ستونه می‌شوند. */
+.reports-consumption-panel { width: 100%; min-width: 0; margin: 0 0 18px; }
+.reports-consumption-panel > p { line-height: 1.9; overflow-wrap: anywhere; }
+.report-view-field {
+  width: min(260px, 100%);
+  margin: 0 0 12px;
+}
+.report-filter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px 12px;
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--wash);
+}
+.report-filter-field {
+  min-width: 0;
+  margin: 0;
+  gap: 5px;
+}
+.report-filter-field label {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.report-filter-field input,
+.report-filter-field select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 34px;
+  height: 34px;
+  padding: 5px 8px;
+  font-size: 12px;
+}
+.report-view-field select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 34px;
+  height: 34px;
+  padding: 5px 8px;
+  font-size: 12px;
+}
+.report-filter-summary { margin: 0; }
+.report-filter-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+.report-filter-actions .action-button { min-height: 40px; }
+.report-table-wrap { max-height: 520px; }
+.consumption-report-table { min-width: 980px; }
+.consumption-report-table td { white-space: nowrap; }
+.consumption-report-table td:nth-child(7) {
+  min-width: 180px;
+  max-width: 360px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: right;
+}
+.consumption-report-table td:nth-child(1) { min-width: 145px; }
+.consumption-report-table td:nth-child(4),
+.consumption-report-table td:nth-child(5) { white-space: normal; overflow-wrap: anywhere; }
+.shipment-document-cell { min-width: 185px; }
+.shipment-document-cell details { margin-top: 6px; white-space: normal; text-align: right; }
+.shipment-document-cell summary {
+  display: inline-flex;
+  align-items: center;
+  min-height: 32px;
+  padding: 3px 8px;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  background: var(--blue-faint);
+  color: var(--blue-strong);
+  font-size: 11px;
+  cursor: pointer;
+}
+.shipment-document-cell details[open] summary { margin-bottom: 6px; background: var(--blue-wash); }
+.shipment-document-cell details ul {
+  display: grid;
+  gap: 5px;
+  min-width: 220px;
+  margin: 4px 0;
+  padding: 8px 24px 8px 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fff;
+  white-space: normal;
+}
+.shipment-document-cell details li { overflow-wrap: anywhere; font-size: 12px; font-weight: 400; line-height: 1.8; }
+
+@media (max-width: 760px) {
+  .reports-overview { grid-template-columns: minmax(0, 1fr); }
+  .report-filter-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; padding: 11px; }
+  .report-filter-actions { align-items: stretch; }
+  .report-filter-actions .action-button { flex: 1 1 150px; }
+  .reports-consumption-panel { padding: 14px 12px; }
+  .shipment-document-cell details ul { min-width: 180px; }
+  .reports-overview { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 480px) {
+  .report-filter-grid { grid-template-columns: minmax(0, 1fr); }
+  .report-filter-actions { flex-direction: column; align-items: stretch; }
+  .report-filter-actions .action-button { width: 100%; }
+  .shipment-document-cell { min-width: 170px; }
+}

@@ -1,0 +1,59 @@
+<section class="section-card" id="section-2" aria-labelledby="title-2">
+          <div class="dashboard-hero">
+            <div class="dashboard-hero-copy">
+              <span class="dashboard-eyebrow">کنترل و عملیات انبار</span>
+              <h2 id="title-2">موجودی و ارسال</h2>
+              <p>مشاهده و جست‌وجوی اقلام، مدیریت موجودی و ثبت ارسال کالاها از این بخش انجام می‌شود.</p>
+            </div>
+          </div>
+          <div class="dashboard-hero dashboard-hero-compact">
+            <div class="dashboard-hero-copy">
+              <span class="dashboard-eyebrow">عملیات موجودی</span>
+              <h3>مدیریت و ارسال کالاها</h3>
+              <p>اقلام را مشاهده و جست‌وجو کنید و برای ارسال، مقدار موردنیاز را مشخص کنید.</p>
+            </div>
+          </div>
+          <div class="inventory-toolbar">
+            <p class="inventory-count" id="inventory-count">تعداد کالاها: ۰</p>
+            <p class="preview-message">برای مرتب‌سازی، عنوان هر ستون را انتخاب کنید.</p>
+            <button id="open-shipment-dialog" class="action-button" type="button">ثبت ارسال کالاها</button>
+          </div>
+
+          <section class="inventory-alert-panel" id="inventory-alert-panel" aria-labelledby="inventory-alert-title">
+            <div class="inventory-alert-heading">
+              <div>
+                <h3 id="inventory-alert-title">پایش و هشدار موجودی</h3>
+                <p>حداقل موجودی پیش‌فرض برابر ۲۰٪ مقدار ثبت‌شده هنگام ورود است؛ برای هر کالا می‌توانید مقدار اختصاصی تعیین کنید.</p>
+              </div>
+            </div>
+            <div class="inventory-alert-summary" id="inventory-alert-summary" aria-live="polite"></div>
+            <div class="inventory-alert-list" id="inventory-alert-list" aria-live="polite">
+              <p class="inventory-alert-empty">در حال بررسی موجودی…</p>
+            </div>
+          </section>
+
+          <div class="empty-state" id="inventory-empty">هنوز کالایی وارد نشده است. ابتدا از سکشن «ورودی کالا ها» کالا اضافه کنید.</div>
+          <div class="dashboard-hero dashboard-hero-compact inventory-list-hero">
+            <div class="dashboard-hero-copy">
+              <span class="dashboard-eyebrow">فهرست اقلام</span>
+              <h3>لیست مشاهده کالاها</h3>
+              <p>برای یافتن کالا، کد تدارکاتی یا شرح آن را جست‌وجو کنید.</p>
+            </div>
+          </div>
+          <input id="inventory-search" class="inventory-search-input" type="search" autocomplete="off" aria-label="جست‌وجوی موجودی" placeholder="جست‌وجو بر اساس کد یا شرح کالا">
+          <div class="inventory-table-wrap">
+            <table class="inventory-table" aria-label="فهرست کالاهای موجود">
+              <thead>
+                <tr>
+                  <th scope="col" aria-sort="ascending"><button class="inventory-sort-button" type="button" data-inventory-sort="code">کد تدارکاتی <span class="inventory-sort-marker" aria-hidden="true">↑</span></button></th>
+                  <th scope="col"><button class="inventory-sort-button" type="button" data-inventory-sort="description">شرح کالا <span class="inventory-sort-marker" aria-hidden="true">↕</span></button></th>
+                  <th scope="col"><button class="inventory-sort-button" type="button" data-inventory-sort="stock">تعداد موجودی <span class="inventory-sort-marker" aria-hidden="true">↕</span></button></th>
+                  <th scope="col"><button class="inventory-sort-button" type="button" data-inventory-sort="sendQuantity">تعداد برای ارسال <span class="inventory-sort-marker" aria-hidden="true">↕</span></button></th>
+                  <th scope="col"><button class="inventory-sort-button" type="button" data-inventory-sort="entryDate">تاریخ ورود <span class="inventory-sort-marker" aria-hidden="true">↕</span></button></th>
+                </tr>
+              </thead>
+              <tbody id="inventory-grid" aria-live="polite"></tbody>
+            </table>
+          </div>
+          <p id="inventory-feedback" class="feedback" role="status" aria-live="polite"></p>
+        </section>

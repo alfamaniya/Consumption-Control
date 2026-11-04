@@ -1,0 +1,69 @@
+<section class="section-card" id="section-1" aria-labelledby="title-1">
+          <!-- هدر باکس مشترک؛ ظاهر آن با هدر خلاصه وضعیت سامانه در نمای کلی یکسان است. -->
+          <div class="dashboard-hero entry-section-hero">
+            <div class="dashboard-hero-copy">
+              <span class="dashboard-eyebrow">ثبت و مدیریت اطلاعات</span>
+              <h2 id="title-1">ورود کالا</h2>
+              <p>اطلاعات اقلام را از فایل اکسل، ورود دستی یا کلیپ‌بورد اضافه کنید؛ پیش از ثبت نهایی، همه موارد را در پیش‌نمایش مشترک بررسی کنید.</p>
+            </div>
+          </div>
+          <div class="input-panels">
+            <div class="input-panel">
+              <h4>ورودی از اکسل</h4>
+              <div class="field-group">
+                <label for="excel-file">انتخاب فایل از فایل‌منیجر</label>
+                <input id="excel-file" name="excel-file" type="file" accept=".xlsx,.xls,.csv">
+                <span class="field-hint">فایل Excel یا CSV را انتخاب کنید؛ اطلاعات در پیش‌نمایش همین باکس بررسی می‌شوند.</span>
+              </div>
+              <div class="preview-panel" id="excel-preview" aria-live="polite">
+                <h5>پیش‌نمایش ورودی اکسل</h5>
+                <p class="preview-empty">پس از انتخاب فایل، اطلاعات اینجا نمایش داده می‌شوند.</p>
+              </div>
+              <p id="excel-feedback" class="feedback" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="input-panel">
+              <h4>ورودی دستی</h4>
+              <div class="field-group">
+                <label for="supply-code">کد تدارکاتی</label>
+                <input id="supply-code" name="supply-code" type="text" inputmode="numeric" maxlength="10" autocomplete="off" placeholder="کد تدارکاتی ۸ یا ۱۰ رقمی را وارد کنید">
+              </div>
+              <div class="field-group">
+                <label for="item-description">شرح کالا</label>
+                <input id="item-description" name="item-description" type="text" placeholder="شرح کالا را وارد کنید">
+              </div>
+              <div class="field-group">
+                <label for="item-stock">موجودی</label>
+                <input id="item-stock" name="item-stock" type="number" min="0" step="any" inputmode="decimal" placeholder="موجودی عددی را وارد کنید">
+              </div>
+              <div class="preview-panel" id="single-preview" aria-live="polite">
+                <h5>پیش‌نمایش کالای تکی</h5>
+                <p class="preview-empty">با وارد کردن کد، شرح و موجودی، پیش‌نمایش اینجا نمایش داده می‌شود.</p>
+              </div>
+              <p id="single-feedback" class="feedback" role="status" aria-live="polite"></p>
+            </div>
+
+            <div class="input-panel">
+              <h4>ورودی از کلیپ بورد</h4>
+              <div class="field-group">
+                <label for="pasted-data">جای‌گذاری داده‌های کپی‌شده</label>
+                <textarea id="pasted-data" name="pasted-data" placeholder="هر ردیف: کد تدارکاتی، شرح کالا، موجودی"></textarea>
+                <span class="field-hint">ردیف‌ها را از Excel یا فایل متنی کپی کنید و اینجا جای‌گذاری کنید.</span>
+              </div>
+              <div class="preview-panel" id="bulk-preview" aria-live="polite">
+                <h5>پیش‌نمایش ورودی</h5>
+                <p class="preview-empty">پس از پیش‌نمایش داده‌های کلیپ‌بورد، اطلاعات اینجا نمایش داده می‌شوند.</p>
+              </div>
+              <p id="input-feedback" class="feedback" role="status" aria-live="polite"></p>
+            </div>
+          </div>
+
+          <div class="shared-preview-actions">
+            <button class="action-button secondary" id="reset-shared-preview" type="button">ریست پیش‌نمایش</button>
+            <button class="action-button success" id="confirm-all-imports" type="button" disabled>تأیید ورود اطلاعات</button>
+          </div>
+          <div class="preview-panel shared-input-preview" id="shared-input-preview" aria-live="polite">
+            <h5>پیش‌نمایش مشترک اطلاعات ورودی</h5>
+            <p class="preview-empty">اطلاعات هر سه روش در این قسمت جمع می‌شوند و با یک دکمه ثبت خواهند شد.</p>
+          </div>
+        </section>

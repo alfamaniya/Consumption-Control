@@ -1,0 +1,39 @@
+<section class="section-card" id="section-5" aria-labelledby="title-5">
+          <div class="dashboard-hero">
+            <div class="dashboard-hero-copy">
+              <span class="dashboard-eyebrow">گردش و ردیابی اقلام</span>
+              <h2 id="title-5">کاردکس</h2>
+              <p>تمام گردش‌های ورود و خروج اقلام را بر اساس تاریخ، شماره سند و مشخصات کالا پیگیری کنید.</p>
+            </div>
+          </div>
+          <div class="kardex-search-panel">
+            <div class="kardex-search-row">
+              <div class="field-group kardex-autocomplete-group"><label for="kardex-code-search">کد تدارکاتی</label><input id="kardex-code-search" type="search" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="kardex-code-suggestions" placeholder="کد تدارکاتی کالا را جست‌وجو کنید"><div id="kardex-code-suggestions" class="kardex-suggestions" role="listbox" hidden></div></div>
+              <div class="field-group kardex-autocomplete-group"><label for="kardex-description-search">شرح کالا</label><input id="kardex-description-search" type="search" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="kardex-description-suggestions" placeholder="شرح کالا را جست‌وجو کنید"><div id="kardex-description-suggestions" class="kardex-suggestions" role="listbox" hidden></div></div>
+            </div>
+          </div>
+          <div id="kardex-item-summary" class="kardex-item-summary" hidden aria-live="polite">
+            <div class="kardex-item-identity">
+              <span class="kardex-item-label">کالای انتخاب‌شده</span>
+              <strong id="kardex-item-description">—</strong>
+              <span>کد تدارکاتی: <b id="kardex-item-code">—</b></span>
+            </div>
+            <div class="kardex-stock-box">
+              <span>موجودی در انبار</span>
+              <strong id="kardex-item-stock">۰</strong>
+            </div>
+          </div>
+          <div class="dashboard-hero dashboard-hero-compact">
+            <div class="dashboard-hero-copy">
+              <span class="dashboard-eyebrow">نتایج گردش</span>
+              <h3>دفتر گردش کالای انتخاب‌شده</h3>
+              <p>تمام ورودها، خروج‌ها و اصلاحات کالا از قدیمی‌ترین عملیات به جدیدترین نمایش داده می‌شود.</p>
+            </div>
+          </div>
+          <div class="entry-history-table-wrap">
+            <table class="preview-table kardex-table" aria-label="دفتر گردش کالای انتخاب‌شده">
+              <thead><tr><th scope="col">تاریخ و ساعت</th><th scope="col">نوع</th><th scope="col">شماره سند</th><th scope="col">کد کالا</th><th scope="col">شرح کالا</th><th scope="col">محل</th><th scope="col">ورود</th><th scope="col">خروج</th><th scope="col">مانده نسبی</th></tr></thead>
+              <tbody id="kardex-body"><tr><td colspan="9" class="preview-empty">برای مشاهده کاردکس، کد تدارکاتی یا شرح یک کالا را جست‌وجو کنید.</td></tr></tbody>
+            </table>
+          </div>
+        </section>

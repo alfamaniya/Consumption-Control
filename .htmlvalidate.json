@@ -1,0 +1,10 @@
+{
+  "extends": ["html-validate:standard"],
+  "rules": {
+    "no-implicit-input-type": "off",
+    "no-redundant-for": "off",
+    "aria-label-misuse": "off",
+    "prefer-native-element": "off",
+    "form-dup-name": "off"
+  }
+}
