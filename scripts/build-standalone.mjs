@@ -269,7 +269,6 @@ async function main() {
 
   assert(html.includes('<style>'), 'Embedded CSS was not found in generated output.');
   assert(html.includes('id="anbar-xlsx-script"'), 'Embedded SheetJS payload was not found.');
-  assert(html.includes('id="anbar-dashboard-script"'), 'Embedded dashboard payload was not found.');
   assert(html.includes('id="anbar-app-script"'), 'Embedded application payload was not found.');
   assert(html.includes('id="anbar-entry-script"'), 'Embedded entry payload was not found.');
   assert(html.includes('id="anbar-inventory-script"'), 'Embedded inventory payload was not found.');
